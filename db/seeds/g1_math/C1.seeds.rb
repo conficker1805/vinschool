@@ -19,10 +19,10 @@ question_template = QuestionTemplate.create!(
       .choices
         - @question.answers.each_with_index do |answer, index|
           .answer
-            input type="checkbox" id=index class="toggle-btn d-none"
+            input type="checkbox" id=index class="toggle-btn d-none" data-answer-target="answer" data-correct=answer.correct.to_s
             label for=index class="toggle-lbl" = answer.text
       .controls
-        .btn.btn-primary.w-100 Kiểm tra
+        .btn.btn-primary.w-100 data-action="click->answer#verify" Kiểm tra
   TEXT
 )
 
@@ -34,5 +34,16 @@ Question.create!(
     { text: '4 : 2 = 2', correct: false },
     { text: '2 x 4 = 8', correct: false },
     { text: '2 x 2 = 2', correct: false },
+  ],
+)
+
+Question.create!(
+  question_template:,
+  options: { addition: '2 + 2 + 2 = 6' },
+  answers_attributes: [
+    { text: '2 x 3 = 9', correct: false },
+    { text: '6 : 2 = 3', correct: false },
+    { text: '2 x 3 = 6', correct: true },
+    { text: '3 x 3 = 9', correct: false },
   ],
 )
