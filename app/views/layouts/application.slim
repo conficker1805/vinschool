@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      = content_for(:title) || 'Kevin Luu Blog'
+
+    = render 'layouts/meta_tags'
+
+    = yield :head
+
+    = render 'layouts/asset_tags'
+
+  body#page-wrap
+    = yield
