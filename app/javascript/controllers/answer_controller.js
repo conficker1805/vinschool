@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["template", "answer"]
+  static targets = ["template", "answer", "submit"]
 
   connect() {
     // Add event when user clicks on an answer
@@ -10,6 +10,7 @@ export default class extends Controller {
     });
 
     this.setDefaultBlank()
+    this.updateSubmitButtonState()
   }
 
   verify() {
@@ -29,6 +30,11 @@ export default class extends Controller {
 
     const klass = result ? 'correct' : 'incorrect'
     document.querySelector(".title").classList.add(klass);
+  }
+
+  updateSubmitButtonState() {
+    const hasChecked = this.answerTargets.some(input => input.checked)
+    this.submitTarget.disabled = !hasChecked
   }
 
   highlightCorrectAnswers() {
@@ -53,6 +59,8 @@ export default class extends Controller {
       this.setValueForBlank(input.nextElementSibling.textContent)
     else
       this.setDefaultBlank()
+
+    this.updateSubmitButtonState()
   }
 
   uncheckOtherAnswers(input) {
