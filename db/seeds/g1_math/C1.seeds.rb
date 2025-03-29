@@ -7,22 +7,21 @@ question_template = QuestionTemplate.create!(
   answer_type: :single_choice,
   slim_content: <<~TEXT
     .col-md-8.question-section.h-100
+      h4.title.bold Viết phép tính tương ứng vào chỗ trống
       table.table.table-bordered.w-100
         tr
           th Phép cộng
           th Phép nhân
         tr
           td = @question.options['addition']
-          td ....................
-
+          td data-replace="...................."
     .col-md-4.answers-section.h-100
       .choices
-        - @question.answers.each_with_index do |answer, index|
+        - @question.answers.each_with_index do |a, idx|
           .answer
-            input type="checkbox" id=index class="toggle-btn d-none" data-answer-target="answer" data-correct=answer.correct.to_s
-            label for=index class="toggle-lbl" = answer.text
-      .controls
-        .btn.btn-primary.w-100 data-action="click->answer#verify" Kiểm tra
+            input type="checkbox" id=idx class="toggle-btn d-none" data-answer-target="answer" data-correct=a.correct.to_s
+            label for=idx class="toggle-lbl" = a.text
+      = render partial: 'questions/controls'
   TEXT
 )
 

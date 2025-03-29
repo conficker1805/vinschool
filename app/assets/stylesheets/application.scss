@@ -28,6 +28,41 @@ $address-bar-height: 60px;
 }
 
 //==============================
+@keyframes border-angle-rotate {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.answer.highlight {
+  // --border-angle: 0deg;
+  border-radius: 10px;
+  // box-shadow: 0px 2px 4px #CCC;
+  animation: border-angle-rotate 3s infinite linear;
+  border: 3px solid transparent;
+
+  background: linear-gradient(white, white) padding-box,
+  conic-gradient(
+    from var(--border-angle),
+    oklch(100% 50% 0deg),
+    oklch(100% 100% 45deg),
+    oklch(100% 100% 90deg),
+    oklch(100% 100% 135deg),
+    oklch(100% 50% 180deg),
+    oklch(100% 100% 225deg),
+    oklch(100% 100% 270deg),
+    oklch(100% 100% 315deg),
+    oklch(100% 100% 360deg)
+  )
+  border-box;
+}
+
+//==============================
 .toggle-lbl {
   width: 100%;
   padding: 10px 20px;
@@ -46,4 +81,23 @@ $address-bar-height: 60px;
 h4.title {
   font-weight: bold;
   margin-bottom: 15px;
+
+  &.correct:after {
+    background: no-repeat url('checked.png');
+  }
+
+  &.incorrect:after {
+    background: no-repeat url('delete.png');
+  }
+
+  &.correct:after, &.incorrect:after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    position: absolute;
+    margin-left: 10px;
+    background-size: 30px;
+  }
+
 }

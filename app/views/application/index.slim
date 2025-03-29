@@ -1,22 +1,4 @@
-/ == Slim::Template.new { @question.question_template.slim_content }.render(self)
+== Slim::Template.new { @question.question_template.slim_content }.render(self)
 
-.col-md-8.question-section.h-100
-  #template.d-none data-answer-target="template" data-template=@question.json_attributes
-  h4.title.bold
-    | Viết phép tính tương ứng vào chỗ trống
-  table.table.table-bordered.w-100
-    tr
-      th Phép cộng
-      th Phép nhân
-    tr
-      td = @question.options['addition']
-      td ....................
 
-.col-md-4.answers-section.h-100
-  .choices
-    - @question.answers.each_with_index do |a, idx|
-      .answer
-        input type="checkbox" id=idx class="toggle-btn d-none" data-answer-target="answer" data-correct=a.correct.to_s
-        label for=idx class="toggle-lbl" = a.text
-  .controls
-    .btn.btn-primary.w-100 data-action="click->answer#verify" Kiểm tra
+
