@@ -48,6 +48,9 @@ gem "thruster", require: false
 # Seed data
 gem 'seedbank'
 
+# Writing math formula
+gem 'katex', '~> 0.10.0'
+
 # View
 gem "slim-rails"
 

@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'reset';
+@import "_katex";
 
 @media (min-width: 768px) {
   .container, .container-md, .container-sm {
@@ -65,7 +66,7 @@ $address-bar-height: 60px;
 //==============================
 .toggle-lbl {
   width: 100%;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
   background-color: #e0e0e0;
@@ -99,5 +100,11 @@ h4.title {
     margin-left: 10px;
     background-size: 30px;
   }
-
 }
+
+//==============================
+span.mfrac {
+  font-size: 26px;
+  font-family: $main-font;
+}
+//==============================
