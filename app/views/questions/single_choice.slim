@@ -1,0 +1,12 @@
+.col-md-8.question-section.h-100
+  == Slim::Template.new { @question.question_template.slim_content }.render(self)
+
+.col-md-4.answers-section.h-100
+  .choices
+    - @question.answers.each_with_index do |a, idx|
+      .answer
+        input type="checkbox" id=idx class="toggle-btn d-none" data-answer-target="answer" data-correct=a.correct.to_s
+        label for=idx class="toggle-lbl" = a.text
+  .controls
+    #template.d-none data-answer-target="template" data-template=@question.json_attributes
+    button.btn.btn-primary.w-100 data-answer-target="submit" data-action="click->answer#verify" Kiểm tra
