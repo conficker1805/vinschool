@@ -53,6 +53,7 @@ gem 'katex', '~> 0.10.0'
 
 # View
 gem "slim-rails"
+gem 'font-awesome-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
