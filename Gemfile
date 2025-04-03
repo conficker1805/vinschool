@@ -47,6 +47,7 @@ gem "thruster", require: false
 
 # Seed data
 gem 'seedbank'
+gem 'faker'
 
 # Writing math formula
 gem 'katex', '~> 0.10.0'

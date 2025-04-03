@@ -30,6 +30,12 @@ export default class extends Controller {
 
     const klass = result ? 'correct' : 'incorrect'
     document.querySelector(".title").classList.add(klass);
+    this.playSound(result);
+  }
+
+  playSound(isCorrect) {
+    const soundUrl = isCorrect ? "/sounds/correct.wav" : "/sounds/incorrect.wav";
+    new Audio(soundUrl).play();
   }
 
   updateSubmitButtonState() {
@@ -74,11 +80,14 @@ export default class extends Controller {
   }
 
   setValueForBlank(value) {
-    document.querySelector("[data-replace]").textContent = value;
+    const elm = document.querySelector("[data-replace]")
+    if (elm)
+      elm.textContent = value;
   }
 
   setDefaultBlank() {
     const elm = document.querySelector("[data-replace]")
-    elm.textContent = elm.getAttribute("data-replace")
+    if (elm)
+      elm.textContent = elm.getAttribute("data-replace")
   }
 }

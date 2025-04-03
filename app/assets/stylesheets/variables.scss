@@ -1,2 +1,7 @@
 $default-text-color: #3c4a60;
-$main-font: 'Bitter';
+$main-font: monospace;
+// $main-font: 'Bitter';
+
+.bold {
+  font-weight: bold;
+}
