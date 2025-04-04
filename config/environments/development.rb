@@ -72,4 +72,5 @@ Rails.application.configure do
 
   # Temporary allow any host
   config.hosts << /.*\z/
+  config.hosts << "rails-production-8f80.up.railway.app"
 end

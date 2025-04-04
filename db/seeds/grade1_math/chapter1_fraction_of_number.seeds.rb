@@ -380,3 +380,35 @@ Question.create!(
     { text: '9', correct: false },
   ],
 )
+
+# =======================================================
+# question_template = QuestionTemplate.create!(
+#   grade: 1,
+#   subject: :math,
+#   chapter: 1,
+#   question_type: :fraction_of_number,
+#   answer_type: :single_choice,
+#   slim_content: <<~TEXT
+#     .title
+#       = @question.options['fraction'] + ' của một số là ' + @question.options['fraction'] '. Vậy số đó là bao nhiêu?'
+#   TEXT
+# )
+
+
+# numerator = 3
+# denominator = 10
+# quantity = 20
+# fraction = Katex.render('\\frac{' + numerator + '}{' + denominator + '}')
+
+# arr = [
+#   { text: quantity / denominator * numerator, correct: true },
+#   { text: quantity / denominator, correct: false },
+#   { text: '6', correct: false },
+#   { text: '9', correct: false },
+# ]
+
+# Question.create!(
+#   question_template:,
+#   options: { fraction:, quantity: },
+#   answers_attributes: ,
+# )

@@ -1,5 +1,7 @@
 puts 'Creating MATH - Chapter 5 - Clock'
 
+def circular_add(base, increment) = ((base + increment - 1) % 12) + 1
+
 question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
@@ -35,37 +37,37 @@ question_template = QuestionTemplate.create!(
 )
 
 # 12 kim giờ và kim phút cùng nhau thì đọc là 0h hay 12h?
-# 15.times.each do
-#   hour = rand(1..11)
-#   minute = (0..55).step(5).to_a.sample
-#   arr = [
-#     { text: "#{format('%02d', hour)}:#{minute}", correct: true },
-#     { text: "#{format('%02d', hour - 1)}:#{minute}", correct: false },
-#     { text: "#{format('%02d', hour + 1)}:#{minute}", correct: false },
-#     { text: "#{format('%02d', hour)}:#{[minute - 5, 0].max}", correct: false },
-#     { text: "#{format('%02d', hour)}:#{minute + 5}", correct: false },
-#   ]
+15.times.each do
+  hour = rand(1..11)
+  minute = (0..55).step(5).to_a.sample
+  arr = [
+    { text: "#{format('%02d', hour)}:#{minute}", correct: true },
+    { text: "#{format('%02d', circular_add(hour, -1))}:#{minute}", correct: false },
+    { text: "#{format('%02d', circular_add(hour, 1))}:#{minute}", correct: false },
+    { text: "#{format('%02d', hour)}:#{[minute - 5, 0].max}", correct: false },
+    { text: "#{format('%02d', hour)}:#{minute + 5}", correct: false },
+  ]
 
-#   Question.create!(
-#     question_template:,
-#     options: {
-#       hour:,
-#       minute:
-#     },
-#     answers_attributes: [arr[0], *arr[1..].sample(3)].shuffle,
-#   )
-# end
+  Question.create!(
+    question_template:,
+    options: {
+      hour:,
+      minute:
+    },
+    answers_attributes: [arr[0], *arr[1..].sample(3)].shuffle,
+  )
+end
 
-55.times.each do
-  hour = rand(1..12)
+15.times.each do
+  hour = rand(0..12)
   minute = (35..55).step(5).to_a.sample
   arr = [
-    { text: "#{format('%02d', hour)} giờ kém #{minute}", correct: true },
-    { text: "#{format('%02d', hour)} giờ #{minute}", correct: false },
-    { text: "#{format('%02d', [(hour - 1), 1].max)} giờ #{minute}", correct: false },
-    { text: "#{format('%02d', hour)} giờ kém #{minute + 5}", correct: false },
-    { text: "#{format('%02d', hour)} giờ kém #{minute - 5}", correct: false },
-    { text: "#{format('%02d', hour)} giờ", correct: false },
+    { text: "#{circular_add(hour, 1)} giờ kém #{60 - minute}", correct: true },
+    { text: "#{circular_add(hour, 1)} giờ kém #{minute / 5}", correct: true },
+    { text: "#{circular_add(hour, 1)} giờ #{60 - minute}", correct: false },
+    { text: "#{circular_add(hour, -1)} giờ #{minute}", correct: false },
+    { text: "#{hour} giờ kém #{60 - minute}", correct: false },
+    { text: "#{hour} giờ kém #{60 - minute + 5}", correct: false },
   ]
 
   Question.create!(

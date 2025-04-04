@@ -211,3 +211,6 @@ Question.create!(
     { text: 'Máy bay', correct: true },
   ],
 )
+
+
+
