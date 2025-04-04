@@ -19,9 +19,6 @@ $address-bar-height: 60px;
 .answers-section {
   padding-top: 15px;
   min-height: calc(100vh - $address-bar-height);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .answer {
@@ -40,41 +37,56 @@ $address-bar-height: 60px;
   inherits: false;
 }
 
-.answer.highlight {
-  // --border-angle: 0deg;
-  border-radius: 10px;
-  // box-shadow: 0px 2px 4px #CCC;
-  animation: border-angle-rotate 3s infinite linear;
-  border: 3px solid transparent;
+// .answer.highlight {
+//   border-radius: 10px;
+//   animation: border-angle-rotate 3s infinite linear;
+//   border: 3px solid transparent;
 
-  background: linear-gradient(white, white) padding-box,
-  conic-gradient(
-    from var(--border-angle),
-    oklch(100% 50% 0deg),
-    oklch(100% 100% 45deg),
-    oklch(100% 100% 90deg),
-    oklch(100% 100% 135deg),
-    oklch(100% 50% 180deg),
-    oklch(100% 100% 225deg),
-    oklch(100% 100% 270deg),
-    oklch(100% 100% 315deg),
-    oklch(100% 100% 360deg)
-  )
-  border-box;
+//   background: linear-gradient(white, white) padding-box,
+//     conic-gradient(
+//       from var(--border-angle),
+//       hsl(0, 100%, 50%),
+//       hsl(45, 100%, 50%),
+//       hsl(90, 100%, 50%),
+//       hsl(135, 100%, 50%),
+//       hsl(180, 100%, 50%),
+//       hsl(225, 100%, 50%),
+//       hsl(270, 100%, 50%),
+//       hsl(315, 100%, 50%),
+//       hsl(360, 100%, 50%)
+//     ) border-box;
+// }
+
+@keyframes glow {
+  0% { box-shadow: 0 0 1px #236d98; }
+  50% { box-shadow: 0 0 10px #236d98; }
+  100% { box-shadow: 0 0 1px #236d98; }
+}
+
+.answer.highlight {
+  border-radius: 10px;
+  border: 2px solid #236d98; /* Yellow border */
+  animation: glow 1.5s infinite alternate;
+
+  .toggle-lbl {
+    background-color: #acd1f4 !important;
+  }
 }
 
 //==============================
 .toggle-lbl {
   width: 100%;
   padding: 8px 15px;
-  border-radius: 5px;
+  font-size: 18px;
+  border-radius: 7px;
   cursor: pointer;
   background-color: #e0e0e0;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
 }
 
 .toggle-btn:checked + .toggle-lbl {
-  border: 1px solid #0d6efd;
+  border: 1px solid #989898;
+  background: #c1c1c1;
 }
 
 //==============================
@@ -83,6 +95,7 @@ $address-bar-height: 60px;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
+  padding-right: 20px;
 
   &.correct:after {
     background: no-repeat url('checked.png');

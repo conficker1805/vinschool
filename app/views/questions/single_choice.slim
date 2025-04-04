@@ -1,17 +1,5 @@
 .col-md-8.question-section.h-100
   == Slim::Template.new { @question.question_template.slim_content }.render(self)
-  / .title
-  /   = @question.options['name']
-  /   |  có 
-  /   = @question.options['total']
-  /   | . @question.options['name'] đã chi 
-  /   = @question.options['spent_usd']
-  /   |  và 
-  /   = @question.options['spent_cent']
-  /   | để mua bánh. Vậy bạn còn lại số tiền là bao nhiêu?
-  /   div
-  /     span Số tiền còn lại là:
-  /     span data-replace="............."
 
 .col-md-4.answers-section.h-100
   .choices

@@ -11,6 +11,7 @@ export default class extends Controller {
 
     this.setDefaultBlank()
     this.updateSubmitButtonState()
+    this.loadSounds()
   }
 
   verify() {
@@ -25,17 +26,27 @@ export default class extends Controller {
       }
     });
 
-    if (result)
-      this.highlightCorrectAnswers()
+    this.playSound(result);
+    this.highlightCorrectAnswers()
 
     const klass = result ? 'correct' : 'incorrect'
     document.querySelector(".title").classList.add(klass);
-    this.playSound(result);
+
+    // this.submitTarget.textContent = 'Câu tiếp theo'
+    this.answerTargets.forEach(answerTarget => answerTarget.disabled = true);
+  }
+
+  loadSounds() {
+    // This make the sound open faster on mobile web
+    this.correctAudio = new Audio("/sounds/correct.wav");
+    this.incorrectAudio = new Audio("/sounds/incorrect.wav");
+    this.correctAudio.load();
+    this.incorrectAudio.load();
   }
 
   playSound(isCorrect) {
-    const soundUrl = isCorrect ? "/sounds/correct.wav" : "/sounds/incorrect.wav";
-    new Audio(soundUrl).play();
+    const sound = isCorrect ? this.correctAudio : this.incorrectAudio;
+    sound.play()
   }
 
   updateSubmitButtonState() {
@@ -81,13 +92,11 @@ export default class extends Controller {
 
   setValueForBlank(value) {
     const elm = document.querySelector("[data-replace]")
-    if (elm)
-      elm.textContent = value;
+    if (elm) { elm.textContent = value; }
   }
 
   setDefaultBlank() {
     const elm = document.querySelector("[data-replace]")
-    if (elm)
-      elm.textContent = elm.getAttribute("data-replace")
+    if (elm) { elm.textContent = elm.getAttribute("data-replace") }
   }
 }
