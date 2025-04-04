@@ -90,4 +90,6 @@ Rails.application.configure do
 
   # Temporary allow any host
   config.hosts << /.*\z/
+
+  config.assets.css_compressor = :sass
 end
