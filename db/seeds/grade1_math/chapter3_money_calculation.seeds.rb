@@ -25,12 +25,12 @@ question_template = QuestionTemplate.create!(
   spent_cent = rand(1..99)
 
   arr = [
-    { text: "$#{total - spent_usd - 1} và #{100 - spent_cent}c", correct: true },
-    { text: "$#{total - spent_usd} và #{100 - spent_cent}c", correct: false },
-    { text: "$#{total - spent_usd - 1} và #{100 - spent_cent + 10}c", correct: false },
-    { text: "$#{total - spent_usd + 1} và #{100 - spent_cent}c", correct: false },
+    { text: "US$#{total - spent_usd - 1} và #{100 - spent_cent}c", correct: true },
+    { text: "US$#{total - spent_usd} và #{100 - spent_cent}c", correct: false },
+    { text: "US$#{total - spent_usd - 1} và #{100 - spent_cent + 10}c", correct: false },
+    { text: "US$#{total - spent_usd + 1} và #{100 - spent_cent}c", correct: false },
     { text: "#{100 - spent_cent}c", correct: false },
-    { text: "$#{total - spent_usd - 1}", correct: false },
+    { text: "US$#{total - spent_usd - 1}", correct: false },
   ]
 
   Question.create!(

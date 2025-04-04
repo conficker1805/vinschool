@@ -4,19 +4,21 @@ end
 
 puts '---------GRADE 1--------'
 
-puts 'Creating MATH - Chapter 1'
-Rake::Task['db:seed:grade1_math:chapter1_repeated_addition'].invoke
-Rake::Task['db:seed:grade1_math:chapter1_fraction_of_number'].invoke
-Rake::Task['db:seed:grade1_math:chapter1_breakdown_multiplication'].invoke
+# puts 'Creating MATH - Chapter 1'
+# Rake::Task['db:seed:grade1_math:chapter1_repeated_addition'].invoke
+# Rake::Task['db:seed:grade1_math:chapter1_fraction_of_number'].invoke
+# Rake::Task['db:seed:grade1_math:chapter1_breakdown_multiplication'].invoke
 
-puts 'Creating MATH - Chapter 3'
-Rake::Task['db:seed:grade1_math:chapter3_money_calculation'].invoke
+# puts 'Creating MATH - Chapter 3'
+# Rake::Task['db:seed:grade1_math:chapter3_money_calculation'].invoke
 
-puts 'Creating MATH - Chapter 4'
-Rake::Task['db:seed:grade1_math:chapter4_reverse_calculation'].invoke
-Rake::Task['db:seed:grade1_math:chapter4_statistical_chart_quantity_comparison'].invoke
+# puts 'Creating MATH - Chapter 4'
+# Rake::Task['db:seed:grade1_math:chapter4_reverse_calculation'].invoke
+# Rake::Task['db:seed:grade1_math:chapter4_statistical_chart_quantity_comparison'].invoke
 
-# TODO: Finish me
+puts 'Creating MATH - Chapter 5'
+Rake::Task['db:seed:grade1_math:chapter5_clock'].invoke
+
 question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
@@ -41,6 +43,6 @@ Question.create!(
   question_template:,
   options: {
     numbers: { num1: 2, num2: 6, num3: 0 },
-    results: { num1: 20, num2: 6 },
+    results: { num1: 2, num2: 6 },
   },
 )
