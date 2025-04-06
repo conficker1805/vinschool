@@ -382,33 +382,78 @@ Question.create!(
 )
 
 # =======================================================
-# question_template = QuestionTemplate.create!(
-#   grade: 1,
-#   subject: :math,
-#   chapter: 1,
-#   question_type: :fraction_of_number,
-#   answer_type: :single_choice,
-#   slim_content: <<~TEXT
-#     .title
-#       = @question.options['fraction'] + ' của một số là ' + @question.options['fraction'] '. Vậy số đó là bao nhiêu?'
-#   TEXT
-# )
+# 1/2 của một số là 2 vậy số đó là bao nhiêu?
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :fraction_of_number,
+  answer_type: :single_choice,
+  slim_content: <<~TEXT
+    .title
+      == @question.options['fraction']
+      = ' của một số là ' + @question.options['quantity'].to_s + '. Vậy số đó là bao nhiêu?'
+  TEXT
+)
 
+data = [[1, 2, 1], [1, 2, 3], [1, 2, 5], [1, 2, 7], [1, 2, 9], [1, 3, 3], [1, 3, 4], [1, 4, 2], [1, 5, 2], [1, 5, 4], [1, 5, 6], [1, 5, 8], [1, 5, 10], [1, 10, 2], [1, 10, 1]]
+data.each do |arr|
+  numerator, denominator, quantity = arr
+  fraction = Katex.render('\\frac{' + numerator.to_s + '}{' + denominator.to_s + '}')
 
-# numerator = 3
-# denominator = 10
-# quantity = 20
-# fraction = Katex.render('\\frac{' + numerator + '}{' + denominator + '}')
+  arr = [
+    { text: quantity * denominator / numerator, correct: true },
+    { text: quantity * denominator / numerator + 1, correct: false },
+    { text: Katex.render('\\frac{' + quantity.to_s + '}{' + denominator.to_s + '}'), correct: false },
+    { text: Katex.render('\\frac{' + denominator.to_s + '}{' + quantity.to_s + '}'), correct: false },
+    { text: quantity + denominator, correct: false },
+  ]
 
-# arr = [
-#   { text: quantity / denominator * numerator, correct: true },
-#   { text: quantity / denominator, correct: false },
-#   { text: '6', correct: false },
-#   { text: '9', correct: false },
-# ]
+  Question.create!(
+    question_template:,
+    options: { fraction:, quantity: },
+    answers_attributes: [arr[0], *arr[1..].sample(3)].shuffle,
+  )
+end
 
-# Question.create!(
-#   question_template:,
-#   options: { fraction:, quantity: },
-#   answers_attributes: ,
-# )
+# =======================================================
+# 1/2 của một số là 2 vậy 1/4 của số đó là bao nhiêu?
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :fraction_of_number,
+  answer_type: :single_choice,
+  slim_content: <<~TEXT
+    .title
+      == @question.options['fraction1']
+      = ' của một số là ' + @question.options['quantity'].to_s + '. Vậy '
+      == @question.options['fraction2']
+      |  của số đó là bao nhiêu?
+  TEXT
+)
+
+data = [[1, 2, 1, 4, 2], [1, 2, 1, 4, 4], [1, 2, 1, 3, 6], [1, 2, 1, 4, 8], [1, 2, 1, 5, 5], [1, 2, 1, 5, 10], [1, 3, 1, 4, 4], [1, 4, 1, 2, 1], [1, 4, 1, 2, 2], [1, 4, 1, 3, 3], [1, 4, 1, 8, 4], [1, 5, 1, 2, 2], [1, 5, 1, 2, 4], [1, 5, 1, 5, 4], [1, 5, 1, 4, 4]]
+data.each do |arr|
+  numerator1, denominator1, numerator2, denominator2, quantity = arr
+  fraction1 = Katex.render('\\frac{' + numerator1.to_s + '}{' + denominator1.to_s + '}')
+  fraction2 = Katex.render('\\frac{' + numerator2.to_s + '}{' + denominator2.to_s + '}')
+
+  number = quantity * denominator1 / numerator1
+  result = number / denominator2 * numerator2
+
+  arr = [
+    { text: result, correct: true },
+    { text: number, correct: false },
+    { text: numerator2, correct: false },
+    { text: denominator1 + denominator2, correct: false },
+    { text: quantity * denominator2, correct: false },
+  ]
+
+  Question.create!(
+    question_template:,
+    options: { fraction1:, fraction2:, quantity: },
+    answers_attributes: [arr[0], *arr[1..].sample(3)].shuffle,
+  )
+end
+

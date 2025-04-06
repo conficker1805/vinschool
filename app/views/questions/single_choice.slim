@@ -6,7 +6,7 @@
     - @question.answers.each_with_index do |a, idx|
       .answer
         input type="checkbox" id=idx class="toggle-btn d-none" data-single-choice-target="answer" data-correct=a.correct.to_s
-        label for=idx class="toggle-lbl" = a.text
+        label for=idx class="toggle-lbl" == a.text
   .controls
     #template.d-none data-single-choice-target="template" data-template=@question.json_attributes
     button.btn.btn-primary.w-100 data-single-choice-target="submit" data-action="click->single-choice#verify" Kiểm tra

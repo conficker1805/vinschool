@@ -62,12 +62,12 @@ end
   hour = rand(0..12)
   minute = (35..55).step(5).to_a.sample
   arr = [
-    { text: "#{circular_add(hour, 1)} giờ kém #{60 - minute}", correct: true },
-    { text: "#{circular_add(hour, 1)} giờ kém #{minute / 5}", correct: true },
-    { text: "#{circular_add(hour, 1)} giờ #{60 - minute}", correct: false },
-    { text: "#{circular_add(hour, -1)} giờ #{minute}", correct: false },
-    { text: "#{hour} giờ kém #{60 - minute}", correct: false },
-    { text: "#{hour} giờ kém #{60 - minute + 5}", correct: false },
+    { text: "#{circular_add(hour, 1)} giờ kém #{60 - minute} phút", correct: true },
+    { text: "#{circular_add(hour, 1)} giờ kém #{minute / 5} phút", correct: false },
+    { text: "#{circular_add(hour, 1)} giờ #{60 - minute} phút", correct: false },
+    { text: "#{circular_add(hour, -1)} giờ #{minute} phút", correct: false },
+    { text: "#{hour} giờ kém #{60 - minute} phút", correct: false },
+    { text: "#{hour} giờ kém #{60 - minute + 5} phút", correct: false },
   ]
 
   Question.create!(

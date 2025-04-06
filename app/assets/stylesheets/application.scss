@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'reset';
 @import "_katex";
+@import "test";
 
 @media (min-width: 768px) {
   .container, .container-md, .container-sm {
@@ -97,6 +98,10 @@ $address-bar-height: 60px;
   margin-bottom: 15px;
   padding-right: 20px;
 
+  span.mfrac {
+    font-weight: bold;
+  }
+
   &.correct:after {
     background: no-repeat url('checked.png');
   }
@@ -118,8 +123,14 @@ $address-bar-height: 60px;
 
 //==============================
 span.mfrac {
-  font-size: 24px;
+  font-size: 26px;
   font-family: $main-font;
+}
+
+.katex .mathnormal {
+  font-family: $main-font;
+  font-size: 18px;
+  font-style: normal;
 }
 //==============================
 .square {
@@ -130,4 +141,3 @@ span.mfrac {
   line-height: 50px;
   text-align: center;
 }
-//==============================
