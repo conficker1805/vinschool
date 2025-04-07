@@ -33,6 +33,11 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+# File uploads/resize for Rails
+gem 'carrierwave', '~> 3.0'
+gem 'fog-aws'
+gem 'mini_magick'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

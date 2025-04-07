@@ -10,7 +10,4 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "questions#index"
-
-  get :seed, controller: :application, action: :seed
-  get :reset, controller: :application, action: :reset
 end

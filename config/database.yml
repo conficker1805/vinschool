@@ -81,12 +81,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    host: <%= ENV['PGHOST'] %>
-    username: <%= ENV['PGUSER'] %>
-    password: <%= ENV['PGPASSWORD'] %>
-    port: <%= ENV['PGPORT'] || 5432 %>
-    database: <%= ENV['PGDATABASE'] %>
-
+    database: vinschool_production
+    username: vinschool
     password: <%= ENV["VINSCHOOL_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production

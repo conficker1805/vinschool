@@ -2,8 +2,8 @@ class QuestionsController < ApplicationController
   def index
     question_type = params[:question_type] || :scale
     # @question = Question.includes(:question_template, :answers).all.sample
-    @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
-    # @question = Question.last
+    # @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
+    @question = Question.last
 
     @stimulus_controller = @question.question_template.answer_type.gsub('_', '-')
 

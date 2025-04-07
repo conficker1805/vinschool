@@ -181,8 +181,8 @@ Question.create!(
   answers_attributes: [
     { text: '1', correct: false },
     { text: '2', correct: false },
-    { text: '4', correct: true },
-    { text: '5', correct: false },
+    { text: '4', correct: false },
+    { text: '5', correct: true },
   ],
 )
 
@@ -433,7 +433,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-data = [[1, 2, 1, 4, 2], [1, 2, 1, 4, 4], [1, 2, 1, 3, 6], [1, 2, 1, 4, 8], [1, 2, 1, 5, 5], [1, 2, 1, 5, 10], [1, 3, 1, 4, 4], [1, 4, 1, 2, 1], [1, 4, 1, 2, 2], [1, 4, 1, 3, 3], [1, 4, 1, 8, 4], [1, 5, 1, 2, 2], [1, 5, 1, 2, 4], [1, 5, 1, 5, 4], [1, 5, 1, 4, 4]]
+data = [[1, 2, 1, 4, 2], [1, 2, 1, 4, 4], [1, 2, 1, 3, 6], [1, 2, 1, 4, 8], [1, 2, 1, 5, 5], [1, 2, 1, 5, 10], [1, 3, 1, 4, 4], [1, 4, 1, 2, 1], [1, 4, 1, 2, 2], [1, 4, 1, 3, 3], [1, 4, 1, 8, 4], [1, 5, 1, 2, 2], [1, 5, 1, 2, 4], [1, 5, 1, 4, 4]]
 data.each do |arr|
   numerator1, denominator1, numerator2, denominator2, quantity = arr
   fraction1 = Katex.render('\\frac{' + numerator1.to_s + '}{' + denominator1.to_s + '}')

@@ -20,5 +20,6 @@ Rake::Task['db:seed:grade1_math:chapter4_statistical_chart_quantity_comparison']
 puts 'Creating MATH - Chapter 5'
 Rake::Task['db:seed:grade1_math:chapter5_clock'].invoke
 Rake::Task['db:seed:grade1_math:chapter5_scale'].invoke
+Rake::Task['db:seed:grade1_math:chapter5_3d_shapes'].invoke
 
 
