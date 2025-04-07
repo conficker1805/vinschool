@@ -2,7 +2,7 @@
   div.modal-dialog.modal-fullscreen-xl-down
     div.modal-content
       div.modal-body
-        - (1..100).each do |num|
+        - options.each do |num|
           button.btn.btn-outline-primary.number data-action="click->number-selector#selectNumber" data-number-value=num = num
 
 scss:
