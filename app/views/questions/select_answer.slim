@@ -1,6 +1,5 @@
 .col-md-8.question-section.h-100 data-controller='number-selector'
   == Slim::Template.new { @question.question_template.slim_content }.render(self)
-  = image_tag(aws_public_url('pyramid.png'))
 
 .col-md-4.answers-section.h-100
   .controls
