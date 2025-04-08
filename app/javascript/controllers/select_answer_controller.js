@@ -18,6 +18,7 @@ export default class extends Controller {
     });
 
     this.playSound(result);
+    this.addReloadButton();
 
     const klass = result ? 'correct' : 'incorrect'
     document.querySelector(".title").classList.add(klass);
@@ -34,5 +35,13 @@ export default class extends Controller {
   playSound(isCorrect) {
     const sound = isCorrect ? this.correctAudio : this.incorrectAudio;
     sound.play()
+  }
+
+  addReloadButton() {
+    const newButton = document.createElement("button")
+    newButton.className = "btn btn-primary w-100"
+    newButton.textContent = "Câu tiếp theo"
+    newButton.addEventListener("click", () => window.location.reload())
+    this.submitTarget.replaceWith(newButton)
   }
 }

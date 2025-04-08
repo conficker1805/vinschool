@@ -28,6 +28,7 @@ export default class extends Controller {
 
     this.playSound(result);
     this.highlightCorrectAnswers()
+    this.addReloadButton();
 
     const klass = result ? 'correct' : 'incorrect'
     document.querySelector(".title").classList.add(klass);
@@ -98,5 +99,13 @@ export default class extends Controller {
   setDefaultBlank() {
     const elm = document.querySelector("[data-replace]")
     if (elm) { elm.textContent = elm.getAttribute("data-replace") }
+  }
+
+  addReloadButton() {
+    const newButton = document.createElement("button")
+    newButton.className = "btn btn-primary w-100"
+    newButton.textContent = "Câu tiếp theo"
+    newButton.addEventListener("click", () => window.location.reload())
+    this.submitTarget.replaceWith(newButton)
   }
 }

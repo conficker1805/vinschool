@@ -10,6 +10,7 @@ Rake::Task['db:seed:grade1_math:chapter1_repeated_addition'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_fraction_of_number'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_breakdown_multiplication'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_number_ordering'].invoke
+Rake::Task['db:seed:grade1_math:chapter1_number_sequence'].invoke
 
 puts 'Creating MATH - Chapter 3'
 Rake::Task['db:seed:grade1_math:chapter3_money_calculation'].invoke

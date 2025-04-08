@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   def index
-    question_type = params[:question_type] || :shapes_3d
+    question_type = params[:question_type] || :number_sequence
     # @question = Question.includes(:question_template, :answers).all.sample
-    # @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
-    @question = Question.last
+    @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
+    # @question = Question.last
 
     @stimulus_controller = @question.question_template.answer_type.gsub('_', '-')
 
