@@ -18,7 +18,7 @@ question_template = QuestionTemplate.create!(
       th Bề mặt cong
     tr
       td
-        = image_tag(aws_public_url(@question.options['img']), width: '150px')
+        = image_tag(aws_public_url(@question.options['img']), width: '170px')
       td
         .text-success.bold.d-flex.align-items-center.justify-content-center style="height: 150px" data-action="click->number-selector#openModal" data-result=@question.options['edge'] ...
       td
