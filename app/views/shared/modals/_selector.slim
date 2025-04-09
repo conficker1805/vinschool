@@ -1,12 +1,15 @@
-.modal id="numberModal"
+ruby:
+  id ||= 'selectorModal'
+
+.modal id=id
   div.modal-dialog.modal-fullscreen-xl-down
     div.modal-content
       div.modal-body
         - options.each do |num|
-          button.btn.btn-outline-primary.number data-action="click->number-selector#selectNumber" data-number-value=num = num
+          button.btn.btn-outline-primary.option data-action="click->selector#select" data-value=num = num
 
 scss:
-  .btn.number {
+  .btn.option {
     height: 40px;
     min-width: 40px;
     padding: 0 5px;

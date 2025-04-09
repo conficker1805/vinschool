@@ -113,7 +113,7 @@ question_template = QuestionTemplate.create!(
 
   arr = [
     { text: (weight1 + weight2).to_s + 'kg', correct: true },
-    { text: (weight2 - weight1).to_s + 'kg', correct: false },
+    { text: (weight1 - weight2).to_s + 'kg', correct: false },
     { text: (weight1 + weight2 + 1).to_s + 'kg', correct: false },
     { text: (weight1 + weight2 - 1).to_s + 'kg', correct: false },
     { text: (weight1 + weight2 + 2).to_s + 'kg', correct: false },
