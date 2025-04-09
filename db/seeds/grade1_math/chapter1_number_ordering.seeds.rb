@@ -11,8 +11,8 @@ question_template = QuestionTemplate.create!(
     .h5.mb-4 = @question.options['numbers'].join(', ')
     .wrap.d-flex.flex-flow-wrap.gap-3
       - @question.options['results'].each do |i|
-        .square.text-success.bold data-action=" click->number-selector#openModal" data-result=i
-    = render partial: 'shared/modals/number_selector', locals: { options: @question.options['numbers'] }
+        .square.text-success.bold data-action="click->selector#openModal" data-result=i
+    = render partial: 'shared/modals/selector', locals: { options: @question.options['numbers'] }
   TEXT
 )
 

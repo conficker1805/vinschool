@@ -11,8 +11,8 @@ question_template = QuestionTemplate.create!(
     .h5.mb-4 = @question.options['time_values'].join(', ')
     .wrap.d-flex.flex-flow-wrap.gap-1
       - @question.options['results'].each do |i|
-        .square.text-success.bold.w-auto data-action=" click->number-selector#openModal" data-result=i
-    = render partial: 'shared/modals/number_selector', locals: { options: @question.options['time_values'] }
+        .square.text-success.bold.w-auto data-action="click->selector#openModal" data-result=i
+    = render partial: 'shared/modals/selector', locals: { options: @question.options['time_values'] }
   TEXT
 )
 

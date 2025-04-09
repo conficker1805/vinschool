@@ -10,8 +10,8 @@ question_template = QuestionTemplate.create!(
     .title = 'Một dãy số bắt đầu từ ' + @question.options['start'].to_s + '. Dãy số này gồm các số ' + @question.options['direction'] + ' cách đều ' + @question.options['step'].abs.to_s + ' đơn vị và dừng lại ở số ' + @question.options['stop'].to_s + '. Hãy viết dãy số bên dưới'
     .wrap.d-flex.flex-flow-wrap.gap-3
       - @question.options['results'].each do |i|
-        .square.text-success.bold data-action=" click->number-selector#openModal" data-result=i
-    = render partial: 'shared/modals/number_selector', locals: { options: (1..100).to_a }
+        .square.text-success.bold data-action="click->selector#openModal" data-result=i
+    = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
   TEXT
 )
 

@@ -14,11 +14,11 @@ question_template = QuestionTemplate.create!(
       .square.border-end-0 = @question.options['numbers']['num1']
       .square = @question.options['numbers']['num2']
       span.bold.mx-3.fs-5 = '='
-      .square.border-end-0.text-success.bold data-action="click->number-selector#openModal" data-result=@question.options['results']['num1']
+      .square.border-end-0.text-success.bold data-action="click->selector#openModal" data-result=@question.options['results']['num1']
       .square = @question.options['numbers']['num3']
       span.bold.mx-3.fs-5 +
-      .square.text-success.bold data-action=" click->number-selector#openModal" data-result=@question.options['results']['num2']
-    = render partial: 'shared/modals/number_selector', locals: { options: (0..9).to_a }
+      .square.text-success.bold data-action="click->selector#openModal" data-result=@question.options['results']['num2']
+    = render partial: 'shared/modals/selector', locals: { options: (0..9).to_a }
   TEXT
 )
 
@@ -51,11 +51,11 @@ question_template = QuestionTemplate.create!(
       .square.border-end-0 = @question.options['numbers']['num1']
       .square = @question.options['numbers']['num2']
       span.bold.mx-3.fs-5 = '='
-      .square.border-end-0.text-success.bold data-action="click->number-selector#openModal" data-result=@question.options['results']['num1']
-      .square.text-success.bold data-action="click->number-selector#openModal" data-result=@question.options['results']['num2']
+      .square.border-end-0.text-success.bold data-action="click->selector#openModal" data-result=@question.options['results']['num1']
+      .square.text-success.bold data-action="click->selector#openModal" data-result=@question.options['results']['num2']
       span.bold.mx-3.fs-5 -
       .square = @question.options['numbers']['num3']
-    = render partial: 'shared/modals/number_selector', locals: { options: (0..9).to_a }
+    = render partial: 'shared/modals/selector', locals: { options: (0..9).to_a }
   TEXT
 )
 
