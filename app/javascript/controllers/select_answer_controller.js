@@ -5,9 +5,13 @@ export default class extends Controller {
 
   connect() {
     this.loadSounds()
+    this.setDefaultBlank()
   }
 
   verify() {
+    if (typeof window.prepareResult === "function")
+      window.prepareResult() // Set data-result for answers which can freely input
+
     let result = true
 
     const elementsWithResult = this.element.querySelectorAll('[data-result]');
@@ -43,5 +47,12 @@ export default class extends Controller {
     newButton.textContent = "Câu tiếp theo"
     newButton.addEventListener("click", () => window.location.reload())
     this.submitTarget.replaceWith(newButton)
+  }
+
+  setDefaultBlank() {
+    const elements = document.querySelectorAll("[data-replace]");
+    elements.forEach(elm => {
+      elm.textContent = elm.getAttribute("data-replace");
+    });
   }
 }

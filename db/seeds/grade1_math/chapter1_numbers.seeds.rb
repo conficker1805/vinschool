@@ -79,4 +79,60 @@ question_template = QuestionTemplate.create!(
   )
 end
 
+# =============================================
+# Viết số sau dưới dạng chữ
 
+def read_number(n)
+  return "không" if n == 0
+  return "một trăm" if n == 100
+
+  units = %w[không một hai ba bốn năm sáu bảy tám chín]
+  tens  = [nil, "mười", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"]
+
+  if n < 10
+    units[n]
+  elsif n < 20
+    return "mười lăm" if n == 15
+    return "mười bốn" if n == 14
+    "mười #{units[n % 10]}"
+  else
+    t, u = n.divmod(10)
+    str = "#{tens[t]} mươi"
+    return str if u == 0
+    str + " " + (u == 1 ? "mốt" : u == 4 ? "tư" : u == 5 ? "lăm" : units[u])
+  end
+end
+
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :number_as_text,
+  answer_type: :single_choice,
+  slim_content: <<~TEXT
+    .title Viết số sau dưới dạng chữ
+    span = @question.options['num'].to_s + ': '
+    span data-replace="..................."
+  TEXT
+)
+
+# Tăng tỉ lệ xuất hiện của các số kết thúc bằng 4 và 5
+candidates = (2..9).to_a.map { |i| 4 + i * 10 } + (2..9).to_a.map { |i| 5 + i * 10 }
+candidates += (1..4).to_a.map { rand(10..100) }
+num = candidates.sample
+
+10.times.each do
+  result = read_number(num).capitalize
+  exception = num > 20 && (num % 10 == 4 || num % 10 == 5)
+
+  Question.create!(
+    question_template:,
+    options: { num: },
+    answers_attributes: [
+      { text: result, correct: true },
+      { text: num.to_s.split('').uniq.size == 1 ? result.split[0..-2].join(' ') : read_number(num.to_s.reverse.to_i).capitalize, correct: false },
+      { text: (num >= 20 ? result.gsub('mươi ', '') : read_number(num + 10).capitalize), correct: false },
+      { text: (exception ? result.gsub('lăm', 'năm').gsub('tư', 'bốn') : read_number(num - 10).capitalize), correct: false },
+    ].shuffle,
+  )
+end

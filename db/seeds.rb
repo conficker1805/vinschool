@@ -6,6 +6,9 @@ puts '---------GRADE 1--------'
 
 puts 'Creating MATH - Chapter 1'
 Rake::Task['db:seed:grade1_math:chapter1_numbers'].invoke
+Rake::Task['db:seed:grade1_math:chapter1_numbers_tens_addition'].invoke
+Rake::Task['db:seed:grade1_math:chapter1_numbers_addition_subtraction'].invoke
+Rake::Task['db:seed:grade1_math:chapter1_venn_chart'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_repeated_addition'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_fraction_of_number'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_breakdown_multiplication'].invoke
