@@ -9,7 +9,7 @@ question_template = QuestionTemplate.create!(
   slim_content: <<~TEXT
     .title = 'Sắp đơn vị thời gian theo thứ tự ' + @question.options['ordering'] + ':'
     .h5.mb-4 = @question.options['time_values'].join(', ')
-    .wrap.d-flex.flex-flow-wrap.gap-1
+    .wrap.d-flex.flex-flow-wrap.gap-3
       - @question.options['results'].each do |i|
         .square.text-success.bold.w-auto data-action="click->selector#openModal" data-result=i
     = render partial: 'shared/modals/selector', locals: { options: @question.options['time_values'] }
@@ -17,7 +17,8 @@ question_template = QuestionTemplate.create!(
 )
 
 10.times.each do
-  results = %w[giây phút giờ ngày tuần tháng năm]
+  origin = %w[giây phút giờ ngày tuần tháng năm]
+  results = origin - origin.sample(2)
   time_values = results.shuffle
   Question.create!(
     question_template:,
@@ -30,7 +31,8 @@ question_template = QuestionTemplate.create!(
 end
 
 10.times.each do
-  results =  %w[năm tháng tuần ngày giờ phút giây]
+  origin =  %w[năm tháng tuần ngày giờ phút giây]
+  results = origin - origin.sample(2)
   time_values = results.shuffle
   Question.create!(
     question_template:,

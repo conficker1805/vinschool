@@ -38,8 +38,8 @@ question_template = QuestionTemplate.create!(
 
 # 12 kim giờ và kim phút cùng nhau thì đọc là 0h hay 12h?
 15.times.each do
-  hour = rand(1..11)
-  minute = (0..55).step(5).to_a.sample
+  hour = 0
+  minute = 0
   arr = [
     { text: "#{format('%02d', hour)}:#{minute}", correct: true },
     { text: "#{format('%02d', circular_add(hour, -1))}:#{minute}", correct: false },

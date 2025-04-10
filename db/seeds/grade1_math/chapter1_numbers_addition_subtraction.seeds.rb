@@ -1,3 +1,5 @@
+puts 'Creating MATH - Chapter 1 - Addition & Subtraction'
+
 # Thực hiện phép tình cộng hoặc trừ: 33 + 25 = []
 question_template = QuestionTemplate.create!(
   grade: 1,

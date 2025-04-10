@@ -1,9 +1,11 @@
 class QuestionsController < ApplicationController
   def index
-    # question_type = params[:question_type] || :numbers_dice
-    @question = Question.includes(:question_template, :answers).all.sample
-    # @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
-    # @question = QuestionTemplate.find_by(answer_type: :select_answer).questions.last
+    question_type = params[:question_type]
+    if question_type
+      @question = Question.includes(:question_template, :answers).where(question_template: { question_type: }).sample
+    else
+      @question = Question.includes(:question_template, :answers).all.sample
+    end
     # @question = Question.last
 
     @stimulus_controller = @question.question_template.answer_type.gsub('_', '-')
