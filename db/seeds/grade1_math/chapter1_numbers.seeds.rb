@@ -42,7 +42,7 @@ question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
   chapter: 1,
-  question_type: :number_dice,
+  question_type: :numbers_dice,
   answer_type: :single_choice,
   slim_content: <<~TEXT
     .title Viết số tương ứng với tổng số chấm trên ba mặt của con xúc xắc
@@ -55,7 +55,7 @@ question_template = QuestionTemplate.create!(
           - dot_positions[value].each do |pos|
             .dot class=pos
     scss:
-      .dice{width:90px;height:90px;margin-top:30px;margin-left:30px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-30deg)}.face{position:absolute;width:90px;height:90px;background:#fff;border:2px solid #333;box-shadow:0 2px 5px rgba(0,0,0,.2);display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.front{transform:translateZ(45px)}.top{transform:rotateX(90deg) translateZ(45px)}.right{transform:rotateY(90deg) translateZ(45px)}.dot{width:13px;height:13px;background:#333;border-radius:50%;position:absolute}.center{top:50%;left:50%;transform:translate(-50%,-50%)}.tl{top:25%;left:25%}.tr{top:25%;right:25%}.bl{bottom:25%;left:25%}.br{bottom:25%;right:25%}.ml{top:50%;left:25%;transform:translateY(-50%)}.mr{top:50%;right:25%;transform:translateY(-50%)}
+      .dice{width:90px;height:90px;margin-top:30px;margin-left:30px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-30deg)}.face{position:absolute;width:90px;height:90px;background:#fa6657;border:2px solid #333;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.front{transform:translateZ(45px)}.top{transform:rotateX(90deg) translateZ(45px)}.right{transform:rotateY(90deg) translateZ(45px)}.dot{width:20px;height:18px;background:#333;border-radius:50%;position:absolute}.center{top:50%;left:50%;transform:translate(-50%,-50%)}.tl{top:15%;left:15%}.tr{top:15%;right:15%}.bl{bottom:15%;left:15%}.br{bottom:15%;right:15%}.ml{top:50%;left:15%;transform:translateY(-50%)}.mr{top:50%;right:15%;transform:translateY(-50%)}
   TEXT
 )
 

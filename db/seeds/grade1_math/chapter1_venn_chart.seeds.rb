@@ -31,6 +31,8 @@ question_template = QuestionTemplate.create!(
       span Có tổng cộng bao nhiêu bạn?  
       span.text-success.bold data-action="click->selector#openModal" data-replace="........." data-result=@question.options['results']['num4']
     = render partial: 'shared/modals/selector', locals: { options: (0..100).to_a }
+    scss:
+      .circle-wrapper{position:relative;width:290px;height:200px;.circle{width:180px;height:180px;border-radius:50%;position:absolute;top:10px;font-size:14px;text-align:center;padding:10px 0;display:flex;flex-direction:column;justify-content:space-between}.circle-1{left:0;border:1px solid black;.circle-count{text-indent:-70px}}.circle-2{left:110px;border:1px solid black;.circle-count{text-indent:70px}}.common-count{position:absolute;top:50%;left:47%}}
   TEXT
 )
 
