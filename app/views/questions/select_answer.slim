@@ -1,6 +1,5 @@
 .col-md-8.question-section.h-100 data-controller='selector'
   == Slim::Template.new { @question.question_template.slim_content }.render(self)
-
 .col-md-4.answers-section.h-100
   .controls
     #template.d-none data-select-answer-target="template" data-template=@question.json_attributes
