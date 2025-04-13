@@ -40,6 +40,4 @@
 *.rdb
 *.keep
 
-/config/credentials/development.key
-
 .notes
