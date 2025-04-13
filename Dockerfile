@@ -10,7 +10,6 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-# Copy app code
 COPY . .
 
 CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
