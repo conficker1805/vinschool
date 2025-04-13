@@ -13,7 +13,8 @@ RUN bundle install
 # Copy app code
 COPY . .
 
-# Precompile assets (optional)
-# RUN bundle exec rake assets:precompile
+# Precompile assets
+RUN bundle exec rails assets:precompile
+RUN bundle exec rails dartsass:build
 
 CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
