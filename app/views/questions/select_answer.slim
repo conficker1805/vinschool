@@ -1,6 +1,7 @@
-.col-md-8.question-section.h-100 data-controller='selector'
-  == Slim::Template.new { @question.question_template.slim_content }.render(self)
-.col-md-4.answers-section.h-100
+.col-md-10.offset-md-1 data-controller='selector'
+  .question-section
+    == Slim::Template.new { @question.question_template.slim_content }.render(self)
+.col-md-10.offset-md-1.answers-section
   .controls
     #template.d-none data-select-answer-target="template" data-template=@question.json_attributes
     button.btn.btn-primary.w-100 data-select-answer-target="submit" data-action="click->select-answer#verify" Kiểm tra

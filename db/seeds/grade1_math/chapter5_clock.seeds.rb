@@ -17,7 +17,7 @@ question_template = QuestionTemplate.create!(
       hour_string = '--angle: ' + hour_angle.to_s + 'deg'
       minute_string = '--angle: ' + minute_angle.to_s + 'deg'
 
-    .title Đồng hồ thể hiện mấy giờ?
+    .title Đồng hồ bên dưới thể hiện mấy giờ?
     .clock
       .hand.hour style=hour_string
       .hand.minute style=minute_string

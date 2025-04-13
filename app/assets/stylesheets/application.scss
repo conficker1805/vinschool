@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'reset';
-@import "_katex";
-@import "test";
+@import '_katex';
+@import 'test';
 
 @media (min-width: 768px) {
   .container, .container-md, .container-sm {
@@ -11,15 +11,25 @@
 
 $address-bar-height: 60px;
 
+#page-wrap {
+  background: no-repeat url('background.png');
+}
+
+td, th, tr {
+  background-color: #fbfbfb !important;
+  border-color: #aee0fc;
+}
+
 .question-section {
-  padding-top: 15px;
-  min-height: calc(100vh - $address-bar-height);
-  border-right: 1px solid #CCC;
+  margin-top: 30px;
+  background: #d1ebf9;
+  border-radius: 20px;
+  padding: 7px 25px 30px;
+  box-shadow: 2px -2px 3px 1px #e2e2e2;
 }
 
 .answers-section {
-  padding-top: 15px;
-  min-height: calc(100vh - $address-bar-height);
+  margin-top: 15px;
 }
 
 .answer {
@@ -38,26 +48,6 @@ $address-bar-height: 60px;
   inherits: false;
 }
 
-// .answer.highlight {
-//   border-radius: 10px;
-//   animation: border-angle-rotate 3s infinite linear;
-//   border: 3px solid transparent;
-
-//   background: linear-gradient(white, white) padding-box,
-//     conic-gradient(
-//       from var(--border-angle),
-//       hsl(0, 100%, 50%),
-//       hsl(45, 100%, 50%),
-//       hsl(90, 100%, 50%),
-//       hsl(135, 100%, 50%),
-//       hsl(180, 100%, 50%),
-//       hsl(225, 100%, 50%),
-//       hsl(270, 100%, 50%),
-//       hsl(315, 100%, 50%),
-//       hsl(360, 100%, 50%)
-//     ) border-box;
-// }
-
 @keyframes glow {
   0% { box-shadow: 0 0 1px #236d98; }
   50% { box-shadow: 0 0 10px #236d98; }
@@ -70,11 +60,12 @@ $address-bar-height: 60px;
   animation: glow 1.5s infinite alternate;
 
   .toggle-lbl {
+    padding: 5px 15px !important;
+    border: none;
     background-color: #acd1f4 !important;
   }
 }
 
-//==============================
 .toggle-lbl {
   width: 100%;
   padding: 8px 15px;
@@ -82,10 +73,10 @@ $address-bar-height: 60px;
   border-radius: 7px;
   cursor: pointer;
   background-color: #e0e0e0;
-  // border: 1px solid #ccc;
 }
 
 .toggle-btn:checked + .toggle-lbl {
+  padding: 7px 15px;
   border: 1px solid #989898;
   background: #c1c1c1;
 }
@@ -95,21 +86,13 @@ $address-bar-height: 60px;
 .title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin: 3px 0 7px;
   padding-right: 20px;
 
-  span.mfrac {
-    font-weight: bold;
-  }
+  span.mfrac { font-weight: bold; }
 
-  &.correct:after {
-    background: no-repeat url('checked.png');
-  }
-
-  &.incorrect:after {
-    background: no-repeat url('delete.png');
-  }
-
+  &.correct:after { background: no-repeat url('checked.png'); }
+  &.incorrect:after { background: no-repeat url('delete.png'); }
   &.correct:after, &.incorrect:after {
     content: '';
     width: 30px;
@@ -122,6 +105,7 @@ $address-bar-height: 60px;
 }
 
 //==============================
+// Biểu thức toán học
 span.mfrac {
   font-size: 26px;
   font-family: $main-font;
@@ -133,6 +117,7 @@ span.mfrac {
   font-style: normal;
 }
 //==============================
+// Ô vuông cho user nhập đáp án
 .square {
   border: 1px solid black;
   min-width: 50px;
@@ -142,3 +127,6 @@ span.mfrac {
   line-height: 50px;
   text-align: center;
 }
+// ===================
+
+
