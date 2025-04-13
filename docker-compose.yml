@@ -18,7 +18,7 @@ services:
       - ".:/app"
       - ./config/credentials/production.key:/app/config/credentials/production.key
     ports:
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - db
     environment:
