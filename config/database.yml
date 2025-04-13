@@ -81,9 +81,11 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: vinschool_production
-    username: vinschool
-    password: <%= ENV["VINSCHOOL_DATABASE_PASSWORD"] %>
+    url: <%= ENV["DATABASE_URL"] %>
+
+    # database: vinschool_production
+    # username: vinschool
+    # password: <%= ENV["VINSCHOOL_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: vinschool_production_cache
