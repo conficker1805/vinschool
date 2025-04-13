@@ -6,6 +6,6 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :answers
 
   def json_attributes
-    question_template.attributes.slice('question_type', 'answer_type').to_json
+    question_template.attributes.slice('question_type', 'answer_type').merge(question_id: id).to_json
   end
 end

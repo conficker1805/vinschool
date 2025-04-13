@@ -12,6 +12,3 @@ class QuestionsController < ApplicationController
     render @question.question_template.answer_type
   end
 end
-
-
-
