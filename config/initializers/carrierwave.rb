@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
     aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
     aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key],
     region: Rails.application.credentials.aws[:region],
-    endpoint: Rails.application.credentials.aws[:endpoint],
+    # endpoint: Rails.application.credentials.aws[:endpoint],
     force_path_style: true,
     signature_version: 'v4',
   }

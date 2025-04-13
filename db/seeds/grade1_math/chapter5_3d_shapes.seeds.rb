@@ -17,7 +17,7 @@ question_template = QuestionTemplate.create!(
       th Mặt
       th Bề mặt cong
     tr
-      td = image_tag(aws_public_url(@question.options['img']), width: '170px')
+      td = image_tag(aws_shared_url(@question.options['img']), width: '170px')
       td
         .text-success.bold.d-flex.align-items-center.justify-content-center style="height: 150px" data-action="click->selector#openModal" data-result=@question.options['edge'] ...
       td
@@ -34,7 +34,7 @@ question_template = QuestionTemplate.create!(
 Question.create!(
   question_template:,
   options: {
-    img: 'ball.png',
+    img: 'shared/ball.png',
     edge: 0,
     vertex: 0,
     face: 0,
@@ -46,7 +46,7 @@ Question.create!(
 Question.create!(
   question_template:,
   options: {
-    img: 'pyramid.png',
+    img: 'shared/pyramid.png',
     edge: 8,
     vertex: 5,
     face: 5,
@@ -58,7 +58,7 @@ Question.create!(
 Question.create!(
   question_template:,
   options: {
-    img: 'cuboid.png',
+    img: 'shared/cuboid.png',
     edge: 12,
     vertex: 8,
     face: 6,
@@ -70,7 +70,7 @@ Question.create!(
 Question.create!(
   question_template:,
   options: {
-    img: 'cube.png',
+    img: 'shared/cube.png',
     edge: 12,
     vertex: 8,
     face: 6,
@@ -82,7 +82,7 @@ Question.create!(
 Question.create!(
   question_template:,
   options: {
-    img: 'cylinder.png',
+    img: 'shared/cylinder.png',
     edge: 0,
     vertex: 0,
     face: 2,
