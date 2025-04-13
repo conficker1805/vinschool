@@ -14,6 +14,6 @@ RUN bundle install
 COPY . .
 
 # Precompile assets (optional)
-RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:precompile
 
 CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
