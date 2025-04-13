@@ -61,7 +61,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-5.times do
+15.times do
   origin =  %w[giây phút giờ ngày tuần tháng năm]
   milestone = origin[1..-2].sample
   idx = origin.index(milestone)
@@ -96,7 +96,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-5.times do
+15.times do
   origin =  %w[giây phút giờ ngày tuần tháng năm]
   milestone = origin[1..-2].sample
   idx = origin.index(milestone)
