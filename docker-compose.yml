@@ -22,6 +22,7 @@ services:
       - db
     environment:
       DATABASE_URL: postgres://vinschool:password@db:5432/vinschool_production
+      RAILS_MASTER_KEY: c8e554d53de8f1c007f63cfd6328e994
 
 volumes:
   pgdata:
