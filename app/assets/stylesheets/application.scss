@@ -128,5 +128,30 @@ span.mfrac {
   text-align: center;
 }
 // ===================
+// Dùng cho loại khoanh tròn đáp án
+.circle-btn:checked + .circlable {
+  border: 2px solid #39b8ff;
+}
 
+.circlable {
+  position: relative;
+  border: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+
+  &.highlight:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: no-repeat url('checked.png');
+    background-size: contain;
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 5px);
+    transform: translate(-50%, 0px);
+    display: block;
+  }
+}
 
