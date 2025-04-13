@@ -5,12 +5,11 @@ export default class extends Controller {
 
   connect() {
     // Add event when user clicks on an answer
-    // this.answerTargets.forEach(answer => {
-    //   answer.addEventListener("click", this.toggleAnswer.bind(this));
-    // });
+    this.answerTargets.forEach(answer => {
+      answer.addEventListener("click", this.updateSubmitButtonState.bind(this));
+    });
 
-    // this.setDefaultBlank()
-    // this.updateSubmitButtonState()
+    this.updateSubmitButtonState()
     this.loadSounds()
   }
 
@@ -28,13 +27,7 @@ export default class extends Controller {
 
     this.playSound(result);
     this.highlightCorrectAnswers()
-    // this.addReloadButton();
-
-    // const klass = result ? 'correct' : 'incorrect'
-    // document.querySelector(".title").classList.add(klass);
-
-    // // this.submitTarget.textContent = 'Câu tiếp theo'
-    // this.answerTargets.forEach(answerTarget => answerTarget.disabled = true);
+    this.addReloadButton();
   }
 
   loadSounds() {
@@ -50,10 +43,10 @@ export default class extends Controller {
     sound.play()
   }
 
-  // updateSubmitButtonState() {
-  //   const hasChecked = this.answerTargets.some(input => input.checked)
-  //   this.submitTarget.disabled = !hasChecked
-  // }
+  updateSubmitButtonState() {
+    const hasChecked = this.answerTargets.some(input => input.checked)
+    this.submitTarget.disabled = !hasChecked
+  }
 
   highlightCorrectAnswers() {
     this.answerTargets.forEach(input => {
@@ -64,48 +57,21 @@ export default class extends Controller {
     });
   }
 
-  // toggleAnswer(event) {
-  //   const templateData = JSON.parse(this.templateTarget.dataset.template)
-  //   const input = event.currentTarget;
+  uncheckOtherAnswers(input) {
+    if (!input.checked) return
 
-  //   // console.log('templateData:', templateData);
+    this.answerTargets.forEach(target => {
+      if (target !== input) {
+        target.checked = false;
+      }
+    });
+  }
 
-  //   if (templateData.answer_type == 'single_choice')
-  //     this.uncheckOtherAnswers(input)
-
-  //   if (input.checked)
-  //     this.setValueForBlank(input.nextElementSibling.textContent)
-  //   else
-  //     this.setDefaultBlank()
-
-  //   this.updateSubmitButtonState()
-  // }
-
-  // uncheckOtherAnswers(input) {
-  //   if (!input.checked) return
-
-  //   this.answerTargets.forEach(target => {
-  //     if (target !== input) {
-  //       target.checked = false;
-  //     }
-  //   });
-  // }
-
-  // setValueForBlank(value) {
-  //   const elm = document.querySelector("[data-replace]")
-  //   if (elm) { elm.textContent = value; }
-  // }
-
-  // setDefaultBlank() {
-  //   const elm = document.querySelector("[data-replace]")
-  //   if (elm) { elm.textContent = elm.getAttribute("data-replace") }
-  // }
-
-  // addReloadButton() {
-  //   const newButton = document.createElement("button")
-  //   newButton.className = "btn btn-primary w-100"
-  //   newButton.textContent = "Câu tiếp theo"
-  //   newButton.addEventListener("click", () => window.location.reload())
-  //   this.submitTarget.replaceWith(newButton)
-  // }
+  addReloadButton() {
+    const newButton = document.createElement("button")
+    newButton.className = "btn btn-primary w-100"
+    newButton.textContent = "Câu tiếp theo"
+    newButton.addEventListener("click", () => window.location.reload())
+    this.submitTarget.replaceWith(newButton)
+  }
 }

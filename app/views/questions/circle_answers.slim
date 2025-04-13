@@ -3,5 +3,5 @@
     == Slim::Template.new { @question.question_template.slim_content }.render(self)
 .col-md-10.offset-md-1.answers-section
   .controls
-    #template.d-none circle-answers-target="template" data-template=@question.json_attributes
-    button.btn.btn-primary.w-100 circle-answers-target="submit" data-action="click->circle-answers#verify" Kiểm tra
+    #template.d-none data-circle-answers-target="template" data-template=@question.json_attributes
+    button.btn.btn-primary.w-100 data-circle-answers-target="submit" data-action="click->circle-answers#verify" Kiểm tra
