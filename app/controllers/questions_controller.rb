@@ -6,7 +6,6 @@ class QuestionsController < ApplicationController
     else
       @question = Question.includes(:question_template, :answers).all.sample
     end
-    # @question = Question.last
 
     @stimulus_controller = @question.question_template.answer_type.gsub('_', '-')
 

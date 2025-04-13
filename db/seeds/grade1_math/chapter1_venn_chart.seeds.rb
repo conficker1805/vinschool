@@ -25,7 +25,7 @@ question_template = QuestionTemplate.create!(
       span = 'Có bao nhiêu bạn ' + @question.options['negative'] + ' ' + @question.options['left_title'] + '? '
       span.text-success.bold data-action="click->selector#openModal" data-replace="........." data-result=@question.options['results']['num2']
     .question
-      span = 'Có bao nhiêu bạn ' + @question.options['negative'] + ' ' + @question.options['right_title'] + '? '
+      span = 'Có bao nhiêu bạn ' + @question.options['positive'] + ' ' + @question.options['right_title'] + '? '
       span.text-success.bold data-action="click->selector#openModal" data-replace="........." data-result=@question.options['results']['num3']
     .question
       span Có tổng cộng bao nhiêu bạn?  
@@ -40,8 +40,8 @@ question_template = QuestionTemplate.create!(
   left_num = rand(5..40)
   right_num = rand(5..30)
   common_num = rand(5..30)
-  left_title = ['nhảy', 'múa', 'bơi', 'thuyết trình'].sample
-  right_title = ['hát', 'đàn', 'vẽ', 'làm thơ'].sample
+  left_title = ['nhảy', 'múa', 'bơi'].sample
+  right_title = ['hát', 'đàn', 'vẽ'].sample
   positive = 'biết'
   negative = 'không biết'
 
@@ -55,3 +55,21 @@ question_template = QuestionTemplate.create!(
     }},
   )
 end
+
+left_num = rand(5..40)
+right_num = rand(5..30)
+common_num = rand(5..30)
+left_title = ['nhảy', 'múa', 'bơi'].sample
+right_title = ['hát', 'đàn', 'vẽ'].sample
+positive = 'biết'
+negative = 'không biết'
+
+Question.create!(
+  question_template:,
+  options: { left_num:, right_num:, left_title:, right_title:, positive:, negative:, common_num:, results: {
+    num1: common_num,
+    num2: right_num,
+    num3: right_num + common_num,
+    num4: left_num + right_num + common_num,
+  }},
+)
