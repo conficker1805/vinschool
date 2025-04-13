@@ -65,8 +65,8 @@ question_template = QuestionTemplate.create!(
   origin =  %w[giây phút giờ ngày tuần tháng năm]
   milestone = origin[1..-2].sample
   idx = origin.index(milestone)
-  smaller = origin[0...idx].map { |time| { text: time, correct: false } }
-  larger = origin[(idx + 1)..].map { |time| { text: time, correct: true } }
+  smaller = origin[0...idx].map { |text| { text:, correct: false } }
+  larger = origin[(idx + 1)..].map { |text| { text:, correct: true } }
 
   answers = loop do
     arr = (smaller + larger).shuffle.first(4)
@@ -100,8 +100,8 @@ question_template = QuestionTemplate.create!(
   origin =  %w[giây phút giờ ngày tuần tháng năm]
   milestone = origin[1..-2].sample
   idx = origin.index(milestone)
-  smaller = origin[0...idx].map { |time| { text: time, correct: true } }
-  larger = origin[(idx + 1)..].map { |time| { text: time, correct: false } }
+  smaller = origin[0...idx].map { |text| { text:, correct: true } }
+  larger = origin[(idx + 1)..].map { |text| { text:, correct: false } }
 
   answers = loop do
     arr = (smaller + larger).shuffle.first(4)
