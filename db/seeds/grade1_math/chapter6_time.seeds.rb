@@ -60,7 +60,7 @@ question_template = QuestionTemplate.create!(
       hour_string = '--angle: ' + hour_angle.to_s + 'deg'
       minute_string = '--angle: ' + minute_angle.to_s + 'deg'
     .title Điền số vào đồng hồ điện tử để khớp với đồng hồ kim
-    .clock
+    .clock.mb-4
       .hand.hour style=hour_string
       .hand.minute style=minute_string
       .tick-marks
