@@ -60,6 +60,8 @@ money_pool = {
 }
 
 def us_money_to_words(amount)
+  return '0 cents' if amount.zero?
+
   dollars = amount.to_i
   cents = ((amount - dollars) * 100).round
 
