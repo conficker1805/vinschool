@@ -110,7 +110,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-20.times.each do
+15.times.each do
   money_list = money_pool.to_a.sample(rand(2..3)).to_h
   money_value = money_list.values.sum
 
@@ -123,5 +123,35 @@ question_template = QuestionTemplate.create!(
     question_template:,
     options: { name: Faker::Name.female_first_name, money_list: },
     answers_attributes:,
+  )
+end
+
+# Dạng bài cho 1 số mệnh giá tiền và phải đổi ra cents
+money_pool = {
+  '1_cent' => 0.01,
+  '5_cents' => 0.05,
+  '10_cents' => 0.10,
+  '25_cents' => 0.25,
+  '50_cents' => 0.50,
+  '1_dollar' => 1.00,
+}
+
+10.times.each do
+  money_list = money_pool.to_a.sample(rand(2..4)).to_h
+  money_in_cents = (money_list.values.sum.round(2) * 100).to_i
+
+  arr = [
+    { text: money_in_cents.to_s + ' cents', correct: true },
+    { text: (money_in_cents + 5).to_s + ' cents', correct: false },
+    { text: (money_in_cents - 5).to_s + ' cents', correct: false },
+    { text: (money_in_cents - 5).to_s + ' cents', correct: false },
+    { text: (money_in_cents + 25).to_s + ' cents', correct: false },
+    { text: (money_in_cents + 50).to_s + ' cents', correct: false },
+  ]
+
+  Question.create!(
+    question_template:,
+    options: { name: Faker::Name.female_first_name, money_list: },
+    answers_attributes: [arr[0], *arr[1..].sample(3)].shuffle,
   )
 end
