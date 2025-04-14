@@ -36,9 +36,9 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-# 12 kim giờ và kim phút cùng nhau thì đọc là 0h hay 12h?
 15.times.each do
-  hour = 0
+  hour = rand(1..12)
+  minute = (0..55).step(5).to_a.sample
   minute = 0
   arr = [
     { text: "#{format('%02d', hour)}:#{minute}", correct: true },
