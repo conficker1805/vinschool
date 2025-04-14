@@ -40,11 +40,11 @@ question_template = QuestionTemplate.create!(
   hour = rand(1..12)
   minute = (0..55).step(5).to_a.sample
   arr = [
-    { text: "#{format('%02d', hour)}:#{minute}", correct: true },
-    { text: "#{format('%02d', circular_add(hour, -1))}:#{minute}", correct: false },
-    { text: "#{format('%02d', circular_add(hour, 1))}:#{minute}", correct: false },
-    { text: "#{format('%02d', hour)}:#{[minute - 5, 0].max}", correct: false },
-    { text: "#{format('%02d', hour)}:#{minute + 5}", correct: false },
+    { text: "#{format('%02d', hour)}:#{format('%02d', minute)}", correct: true },
+    { text: "#{format('%02d', circular_add(hour, -1))}:#{format('%02d', minute)}", correct: false },
+    { text: "#{format('%02d', circular_add(hour, 1))}:#{format('%02d', minute)}", correct: false },
+    { text: "#{format('%02d', hour)}:#{format('%02d', [minute - 5, 0].max)}", correct: false },
+    { text: "#{format('%02d', hour)}:#{format('%02d', (minute + 5)}", correct: false },
   ]
 
   Question.create!(
