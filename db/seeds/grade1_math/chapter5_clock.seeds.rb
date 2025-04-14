@@ -44,7 +44,7 @@ question_template = QuestionTemplate.create!(
     { text: "#{format('%02d', circular_add(hour, -1))}:#{format('%02d', minute)}", correct: false },
     { text: "#{format('%02d', circular_add(hour, 1))}:#{format('%02d', minute)}", correct: false },
     { text: "#{format('%02d', hour)}:#{format('%02d', [minute - 5, 0].max)}", correct: false },
-    { text: "#{format('%02d', hour)}:#{format('%02d', (minute + 5)}", correct: false },
+    { text: "#{format('%02d', hour)}:#{format('%02d', minute + 5)}", correct: false },
   ]
 
   Question.create!(
