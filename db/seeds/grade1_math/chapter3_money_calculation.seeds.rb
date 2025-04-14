@@ -144,7 +144,7 @@ money_pool = {
     { text: money_in_cents.to_s + ' cents', correct: true },
     { text: (money_in_cents + 5).to_s + ' cents', correct: false },
     { text: (money_in_cents - 5).to_s + ' cents', correct: false },
-    { text: (money_in_cents - 5).to_s + ' cents', correct: false },
+    { text: (money_in_cents - 25).to_s + ' cents', correct: false },
     { text: (money_in_cents + 25).to_s + ' cents', correct: false },
     { text: (money_in_cents + 50).to_s + ' cents', correct: false },
   ]
