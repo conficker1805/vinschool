@@ -58,7 +58,7 @@ question_template = QuestionTemplate.create!(
 end
 
 15.times.each do
-  hour = rand(0..12)
+  hour = rand(1..12)
   minute = (35..55).step(5).to_a.sample
   arr = [
     { text: "#{circular_add(hour, 1)} giờ kém #{60 - minute} phút", correct: true },
