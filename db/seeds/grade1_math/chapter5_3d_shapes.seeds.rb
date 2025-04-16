@@ -1,4 +1,4 @@
-puts 'Creating MATH - Chapter 4 - Statistical Chart Quantity Comparison'
+puts 'Creating MATH - Chapter 4 - 3D shapes'
 
 # === Dạng bài đếm số cạnh/góc/mặt/cạnh cong của hình 3d
 question_template = QuestionTemplate.create!(
@@ -89,3 +89,41 @@ Question.create!(
     curved_face: 1,
   },
 )
+
+# === Dạng bài điền tên hình 3D
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 4,
+  question_type: :shapes_3d,
+  answer_type: :select_answer,
+  slim_content: <<~TEXT
+   .title Điền tên những hình 3D vào chỗ trống
+   table.table.table-bordered.w-100
+     tr
+       - @question.options['shapes'].each do |shape|
+         td
+           .d-flex.flex-column.align-items-center
+             = image_tag(aws_shared_url(shape['img']), width: '150px')
+             .text-success.bold.d-flex.align-items-center.justify-content-center data-action="click->selector#openModal" data-result=shape['text'] ........
+     = render partial: 'shared/modals/selector', locals: { options: @question.options['answers'] }
+  TEXT
+)
+
+5.times do
+  Question.create!(
+    question_template:,
+    options: {
+      answers: ['Hình chóp', 'Hình trụ', 'Hình cầu', 'Hình hộp', 'Hình hộp chữ nhật'],
+      shapes: [
+        { img: 'shared/pyramid.png', text: 'Hình chóp' },
+        { img: 'shared/cylinder.png', text: 'Hình trụ' },
+        { img: 'shared/ball.png', text: 'Hình cầu' },
+        { img: 'shared/cube.png', text: 'Hình hộp' },
+        { img: 'shared/cuboid.png', text: 'Hình hộp chữ nhật' },
+      ].shuffle.sample(3)
+    },
+  )
+end
+
+
