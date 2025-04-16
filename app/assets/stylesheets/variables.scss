@@ -9,3 +9,30 @@ $main-font: monospace;
 .hide {
   display: none;
 }
+
+$coral-red: #fc6a54;
+$light-coral-red: #fffbf3;
+
+.border-coral-red {
+  border-color: $coral-red !important;
+}
+
+.color-coral-red {
+  color: $coral-red !important;
+}
+
+.background-coral-red {
+  background-color: $coral-red !important;
+}
+
+.border-light-coral-red {
+  border-color: $light-coral-red !important;
+}
+
+.color-light-coral-red {
+  color: $light-coral-red !important;
+}
+
+.background-light-coral-red {
+  background-color: $light-coral-red !important;
+}

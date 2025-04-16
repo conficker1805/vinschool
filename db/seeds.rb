@@ -29,5 +29,6 @@ Rake::Task['db:seed:grade1_math:chapter5_3d_shapes'].invoke
 
 puts 'Creating MATH - Chapter 6'
 Rake::Task['db:seed:grade1_math:chapter6_time'].invoke
+Rake::Task['db:seed:grade1_math:chapter6_calendar'].invoke
 Rake::Task['db:seed:grade1_math:chapter6_repeating_pattern'].invoke
 
