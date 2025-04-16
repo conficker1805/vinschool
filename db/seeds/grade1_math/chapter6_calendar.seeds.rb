@@ -66,12 +66,10 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-10.times.each do
+15.times.each do
   month = months_range.sample
   year = years_range.sample
   date = Date.parse("#{month}/#{year}")
-  # first_day_of_month = date.beginning_of_month
-  # selected_date = (first_day_of_month..(first_day_of_month + 6.days)).to_a.sample
   selected_date = (date.beginning_of_month..date.end_of_month).to_a.sample
 
   Question.create!(
@@ -110,7 +108,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-10.times do
+15.times do
   month = months_range.sample
   year = years_range.sample
   date = Date.parse("#{month}/#{year}")
@@ -174,7 +172,7 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-30.times do
+15.times do
   month = months_range.sample
   year = years_range.sample
   date = Date.parse("#{month}/#{year}")
@@ -198,6 +196,64 @@ question_template = QuestionTemplate.create!(
       year: selected_date.year.to_s,
       day_name: vietnamese_day_name(selected_date),
       week_count:,
+      results: {
+        date: target_date.day.to_s,
+        month: target_date.month.to_s,
+        year: target_date.year.to_s,
+      }
+    },
+  )
+end
+
+# Dạng bài tìm ngày trong tuần xuất hiện lần thứ N
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 5,
+  question_type: :calendar,
+  answer_type: :select_answer,
+  slim_content: <<~TEXT
+    .title.mb-2 = 'Ngày ' + @question.options['day_name'] + ' thứ ' + @question.options['ordering'].to_s + ' là ngày nào?'
+    .calendar.border-coral-red.background-light-coral-red.mb-3
+      .header.bold.color-coral-red = 'Tháng ' + @question.options['month'] + ', ' + @question.options['year']
+      .weekdays
+        - %w[T2 T3 T4 T5 T6 T7 CN].each do |day|
+          span = day
+      .days
+        - @question.options['calendar_days'].each do |day|
+          span = day
+    span.text-success.bold data-action="click->selector#openModal" data-modal-name="dayOfWeek" data-replace="........" data-result=@question.options['day_name']
+    span.text-success.bold = ', ngày '
+    span.text-success.bold data-action="click->selector#openModal" data-modal-name="day" data-replace="...." data-result=@question.options['results']['date']
+    span.text-success.bold = ' tháng '
+    span.text-success.bold data-action="click->selector#openModal" data-modal-name="month" data-replace="...." data-result=@question.options['results']['month']
+    span.text-success.bold = ' năm '
+    span.text-success.bold data-action="click->selector#openModal" data-modal-name="year" data-replace="...." data-result=@question.options['results']['year']
+    = render partial: 'shared/modals/selector', locals: { id: 'dayOfWeek', options: @question.options['day_names'] }
+    = render partial: 'shared/modals/selector', locals: { id: 'day', options: (1..31).to_a }
+    = render partial: 'shared/modals/selector', locals: { id: 'month', options: (1..12).to_a }
+    = render partial: 'shared/modals/selector', locals: { id: 'year', options: (1990..2030).to_a }
+    scss:
+      .calendar{width:300px;border:4px solid;border-radius:16px;padding:10px 15px 5px;box-sizing:border-box;text-align:center}.calendar .header{font-size:28px;margin-bottom:10px}.calendar .weekdays,.calendar .days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:10px}.calendar .weekdays span,.calendar .days span{font-weight:bold}.calendar .days span{font-weight:normal;background:none;min-height:32px;display:flex;justify-content:center;align-items:center}.calendar .days span.highlight{color:#fff;font-weight:bold;box-shadow:0 0 5px rgba(0,0,0,0.2);border-radius:50%}
+  TEXT
+)
+
+5.times do
+  month = months_range.sample
+  year = years_range.sample
+  date = Date.parse("#{month}/#{year}").all_month.to_a.sample
+  ordering = rand(2..3)
+  target_date = date.all_month.select { |d| d.wday == date.wday }[ordering - 1]
+
+  Question.create!(
+    question_template:,
+    options: {
+      calendar_days: build_calendar_days(month, year),
+      day_names:,
+      month: date.month.to_s,
+      year: date.year.to_s,
+      day_name: vietnamese_day_name(date),
+      ordering: { 2 => 'hai', 3 => 'ba' }[ordering],
       results: {
         date: target_date.day.to_s,
         month: target_date.month.to_s,
