@@ -11,6 +11,7 @@ Rake::Task['db:seed:grade1_math:chapter1_numbers_multiplication_division'].invok
 Rake::Task['db:seed:grade1_math:chapter1_venn_chart'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_repeated_addition'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_fraction_of_number'].invoke
+Rake::Task['db:seed:grade1_math:chapter1_fraction_of_shapes'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_breakdown_multiplication'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_number_ordering'].invoke
 Rake::Task['db:seed:grade1_math:chapter1_number_sequence'].invoke

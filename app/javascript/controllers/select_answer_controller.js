@@ -12,9 +12,8 @@ export default class extends Controller {
     if (typeof window.prepareResult === "function")
       window.prepareResult() // Set data-result for answers which can freely input
 
-    let result = true
-
     const elementsWithResult = this.element.querySelectorAll('[data-result]');
+    let result = elementsWithResult.length == 0 ? false : true
 
     elementsWithResult.forEach((elm) => {
       if (elm.dataset.result !== elm.textContent)
