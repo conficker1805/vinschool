@@ -136,3 +136,47 @@ num = candidates.sample
     ].shuffle,
   )
 end
+
+# =============================================
+# Khoanh tròn vật thể đứng thứ X
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 5,
+  question_type: :numbers,
+  answer_type: :circle_answers,
+  slim_content: <<~TEXT
+    .title = 'Bắt đầu từ ' + @question.options['start_from']['name'] + ' hãy khoanh tròn ' + @question.options['item']['name'] + ' thứ ' + @question.options['result'].to_s
+    .answers.gap-4.d-flex.mt-4
+      = fa_icon @question.options['start_from']['font_awesome'], class: 'fs-1'
+      - 1.upto(8).each do |idx|
+        input type="checkbox" id=idx class="circle-btn d-none" data-circle-answers-target="answer" data-correct=(idx == @question.options['result'] ? 'true' : 'false' )
+        label.circlable.fs-5.text-center.mb-0.d-flex.align-items-center.justify-content-center style="min-width: 45px" for=idx = fa_icon @question.options['item']['font_awesome'], class: 'fs-2 fa-regular'
+  TEXT
+)
+
+
+(2..8).to_a.each do |i|
+  start_from = [
+    { name: 'người tuyết', font_awesome: 'snowman' },
+    { name: 'con nhện', font_awesome: 'spider' },
+    { name: 'con chó', font_awesome: 'dog' },
+    { name: 'con ngựa', font_awesome: 'horse' },
+    { name: 'củ cà rốt', font_awesome: 'carrot' },
+  ].sample
+
+  item = [
+    { name: 'cái chuông', font_awesome: 'bell' },
+    { name: 'ngôi sao', font_awesome: 'star' },
+    { name: 'trái tim', font_awesome: 'heart' },
+    { name: 'bàn tay', font_awesome: 'hand' },
+    { name: 'bông tuyết', font_awesome: 'snowflake' },
+    { name: 'mặt trăng', font_awesome: 'moon' },
+    { name: 'trái banh', font_awesome: 'futbol' },
+  ].sample
+
+  Question.create!(
+    question_template:,
+    options: { start_from:, item:, result: i },
+  )
+end
