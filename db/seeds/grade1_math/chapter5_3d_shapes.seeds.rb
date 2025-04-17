@@ -30,65 +30,26 @@ question_template = QuestionTemplate.create!(
   TEXT
 )
 
-# Hình cầu
-Question.create!(
-  question_template:,
-  options: {
-    img: 'shared/ball.png',
-    edge: 0,
-    vertex: 0,
-    face: 0,
-    curved_face: 1,
-  },
-)
+data = [
+  { img: 'shared/ball.png', edge: 0, vertex: 0, face: 0, curved_face: 1 },
+  { img: 'shared/pyramid.png', edge: 8, vertex: 5, face: 5, curved_face: 0 },
+  { img: 'shared/cuboid.png', edge: 12, vertex: 8, face: 6, curved_face: 0 },
+  { img: 'shared/cube.png', edge: 12, vertex: 8, face: 6, curved_face: 0 },
+  { img: 'shared/cylinder.png', edge: 0, vertex: 0, face: 2, curved_face: 1 },
+]
 
-# Hình chóp
-Question.create!(
-  question_template:,
-  options: {
-    img: 'shared/pyramid.png',
-    edge: 8,
-    vertex: 5,
-    face: 5,
-    curved_face: 0,
-  },
-)
-
-# Hình hộp vuông
-Question.create!(
-  question_template:,
-  options: {
-    img: 'shared/cuboid.png',
-    edge: 12,
-    vertex: 8,
-    face: 6,
-    curved_face: 0,
-  },
-)
-
-# Hình hộp chữ nhật
-Question.create!(
-  question_template:,
-  options: {
-    img: 'shared/cube.png',
-    edge: 12,
-    vertex: 8,
-    face: 6,
-    curved_face: 0,
-  },
-)
-
-# Hình trụ
-Question.create!(
-  question_template:,
-  options: {
-    img: 'shared/cylinder.png',
-    edge: 0,
-    vertex: 0,
-    face: 2,
-    curved_face: 1,
-  },
-)
+data.each do |item|
+  Question.create!(
+    question_template:,
+    options: {
+      img: item[:img],
+      edge: item[:edge],
+      vertex: item[:vertex],
+      face: item[:face],
+      curved_face: item[:curved_face],
+    },
+  )
+end
 
 # === Dạng bài điền tên hình 3D
 question_template = QuestionTemplate.create!(
