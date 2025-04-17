@@ -39,36 +39,38 @@ def generate_rules(taken, max)
   (1..max).to_a.flatten.map{ |i| { i => 'slash' }  }.shuffle.first(taken).inject(:merge)
 end
 
-data = [
-  { numerator: 1, denominator: 2, items_per_row: 2, rules: generate_rules(1, 2) },
-  { numerator: 1, denominator: 3, items_per_row: 3, rules: generate_rules(1, 3) },
-  { numerator: 2, denominator: 3, items_per_row: 3, rules: generate_rules(2, 3) },
-  { numerator: 1, denominator: 4, items_per_row: 2, rules: generate_rules(1, 4) },
-  { numerator: 2, denominator: 4, items_per_row: 2, rules: generate_rules(2, 4) },
-  { numerator: 3, denominator: 4, items_per_row: 2, rules: generate_rules(3, 4) },
-  { numerator: 1, denominator: 6, items_per_row: 3, rules: generate_rules(1, 6) },
-  { numerator: 2, denominator: 6, items_per_row: 3, rules: generate_rules(2, 6) },
-  { numerator: 3, denominator: 6, items_per_row: 3, rules: generate_rules(3, 6) },
-  { numerator: 4, denominator: 6, items_per_row: 3, rules: generate_rules(4, 6) },
-  { numerator: 5, denominator: 6, items_per_row: 3, rules: generate_rules(5, 6) },
-]
+2.times do
+  data = [
+    { numerator: 1, denominator: 2, items_per_row: 2, rules: generate_rules(1, 2) },
+    { numerator: 1, denominator: 3, items_per_row: 3, rules: generate_rules(1, 3) },
+    { numerator: 2, denominator: 3, items_per_row: 3, rules: generate_rules(2, 3) },
+    { numerator: 1, denominator: 4, items_per_row: 2, rules: generate_rules(1, 4) },
+    { numerator: 2, denominator: 4, items_per_row: 2, rules: generate_rules(2, 4) },
+    { numerator: 3, denominator: 4, items_per_row: 2, rules: generate_rules(3, 4) },
+    { numerator: 1, denominator: 6, items_per_row: 3, rules: generate_rules(1, 6) },
+    { numerator: 2, denominator: 6, items_per_row: 3, rules: generate_rules(2, 6) },
+    { numerator: 3, denominator: 6, items_per_row: 3, rules: generate_rules(3, 6) },
+    { numerator: 4, denominator: 6, items_per_row: 3, rules: generate_rules(4, 6) },
+    { numerator: 5, denominator: 6, items_per_row: 3, rules: generate_rules(5, 6) },
+  ]
 
-data.each do |i|
-  item_width = 110
-  items_per_row = i[:items_per_row]
-  item_height = 60 * i[:denominator] / i[:items_per_row]
-  column_setting = "grid-template-columns: repeat(#{items_per_row.to_s}, 1fr);"
-  size_setting = "width: #{item_width * items_per_row}px; height: #{item_height}px;"
-  style = column_setting + size_setting
+  data.each do |i|
+    item_width = 110
+    items_per_row = i[:items_per_row]
+    item_height = 60 * i[:denominator] / i[:items_per_row]
+    column_setting = "grid-template-columns: repeat(#{items_per_row.to_s}, 1fr);"
+    size_setting = "width: #{item_width * items_per_row}px; height: #{item_height}px;"
+    style = column_setting + size_setting
 
-  Question.create!(
-    question_template:,
-    options: {
-      numerator: i[:numerator],
-      denominator: i[:denominator],
-      rules: i[:rules],
-      style:,
-    },
-  )
+    Question.create!(
+      question_template:,
+      options: {
+        numerator: i[:numerator],
+        denominator: i[:denominator],
+        rules: i[:rules],
+        style:,
+      },
+    )
+  end
 end
 

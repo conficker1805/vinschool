@@ -28,7 +28,7 @@ question_template = QuestionTemplate.create!(
       span = 'Có bao nhiêu bạn ' + @question.options['positive'] + ' ' + @question.options['right_title'] + '? '
       span.text-success.bold data-action="click->selector#openModal" data-replace="........." data-result=@question.options['results']['num3']
     .question
-      span Có tổng cộng bao nhiêu bạn?  
+      span Có tổng cộng bao nhiêu bạn được khảo sát?  
       span.text-success.bold data-action="click->selector#openModal" data-replace="........." data-result=@question.options['results']['num4']
     = render partial: 'shared/modals/selector', locals: { options: (0..100).to_a }
     scss:
