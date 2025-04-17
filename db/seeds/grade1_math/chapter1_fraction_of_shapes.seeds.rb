@@ -1,10 +1,10 @@
-puts 'Creating MATH - Chapter 1 - Fraction Of Shapes'
+puts 'Creating MATH - Chapter 1 - Fraction of Shapes'
 
 question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
   chapter: 1,
-  question_type: :fraction_of_number,
+  question_type: :fraction_of_shapes,
   answer_type: :select_answer,
   slim_content: <<~TEXT
     .title Viết phân số tương ứng với phần được tô màu:

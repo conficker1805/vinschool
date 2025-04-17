@@ -1,4 +1,4 @@
-puts 'Creating MATH - Chapter 1 - Fraction Of Number'
+puts 'Creating MATH - Chapter 1 - Fraction Of Numbers'
 
 # === START: Dạng bài tìm giá trị phân số của 1 số (có tử số là 1)
 # Ví dụ: 1/2 của 10 là bao nhiêu?
