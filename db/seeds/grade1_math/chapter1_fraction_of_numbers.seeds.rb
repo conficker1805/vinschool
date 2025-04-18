@@ -9,7 +9,7 @@ question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
   chapter: 1,
-  question_type: :fraction_of_number,
+  question_type: :fraction_of_numbers,
   answer_type: :single_choice,
   slim_content: <<~TEXT
     .title Tìm kết quả của phép tính sau:
@@ -387,7 +387,7 @@ question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
   chapter: 1,
-  question_type: :fraction_of_number,
+  question_type: :fraction_of_numbers,
   answer_type: :single_choice,
   slim_content: <<~TEXT
     .title
@@ -422,7 +422,7 @@ question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
   chapter: 1,
-  question_type: :fraction_of_number,
+  question_type: :fraction_of_numbers,
   answer_type: :single_choice,
   slim_content: <<~TEXT
     .title
