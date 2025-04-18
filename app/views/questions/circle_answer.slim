@@ -1,0 +1,7 @@
+.col-md-10.offset-md-1
+  .question-section
+    == Slim::Template.new { @question.question_template.slim_content }.render(self)
+.col-md-10.offset-md-1.answers-section
+  .controls
+    #template.d-none data-circle-answer-target="template" data-template=@question.json_attributes
+    button.btn.btn-primary.w-100 data-circle-answer-target="submit" data-action="click->circle-answer#verify" Kiểm tra

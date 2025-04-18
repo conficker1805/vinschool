@@ -7,6 +7,8 @@ export default class extends Controller {
     // Add event when user clicks on an answer
     this.answerTargets.forEach(answer => {
       answer.addEventListener("click", this.updateSubmitButtonState.bind(this));
+      answer.addEventListener("click", this.toggleAnswer.bind(this));
+
     });
 
     this.updateSubmitButtonState()
@@ -15,6 +17,8 @@ export default class extends Controller {
 
   verify() {
     let result = true
+
+    console.log('verify');
 
     this.answerTargets.map(input => {
       const isCorrect = input.dataset.correct == 'true'
@@ -55,6 +59,21 @@ export default class extends Controller {
       if (isCorrect)
         input.nextElementSibling.classList.add("highlight")
     });
+  }
+
+  uncheckOtherAnswers(input) {
+    if (!input.checked) return
+
+    this.answerTargets.forEach(target => {
+      if (target !== input) {
+        target.checked = false;
+      }
+    });
+  }
+
+  toggleAnswer(event) {
+    const input = event.currentTarget;
+    this.uncheckOtherAnswers(input)
   }
 
   addReloadButton() {

@@ -68,8 +68,6 @@ export default class extends Controller {
     const templateData = JSON.parse(this.templateTarget.dataset.template)
     const input = event.currentTarget;
 
-    // console.log('templateData:', templateData);
-
     if (templateData.answer_type == 'single_choice')
       this.uncheckOtherAnswers(input)
 
