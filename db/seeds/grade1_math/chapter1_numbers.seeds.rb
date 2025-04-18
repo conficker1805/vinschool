@@ -180,3 +180,80 @@ question_template = QuestionTemplate.create!(
     options: { start_from:, item:, result: i },
   )
 end
+
+# ====== Bảng số 100 =====
+def generate_connected_cells(count = 10)
+  grid_size = 10
+  all_cells = (1..100).to_a
+  path = []
+
+  current = all_cells.sample
+  path << current
+
+  while path.size < count
+    x = (current - 1) % grid_size
+    y = (current - 1) / grid_size
+
+    neighbors = []
+    neighbors << current - 1 if x > 0
+    neighbors << current + 1 if x < grid_size - 1
+    neighbors << current - 10 if y > 0
+    neighbors << current + 10 if y < grid_size - 1
+
+    neighbors.reject! { |n| path.include?(n) || !all_cells.include?(n) }
+
+    break if neighbors.empty?
+
+    current = neighbors.sample
+    path << current
+  end
+
+  path
+end
+
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :numbers,
+  answer_type: :select_answer,
+  slim_content: <<~TEXT
+    .title Dựa vào bảng số 100, hãy điền số vào ô trống
+    .d-inline-grid style=('grid-template-columns: repeat(' + @question.options['items_per_row'].to_s + ', 50px)')
+      - @question.options['matrix'].each do |i|
+        - if i == @question.options['display_number']
+          .square.bold.background-light-coral-red.fs-5 = @question.options['display_number']
+        - elsif @question.options['selected_numbers'].include?(i)
+          .square.bold.background-light-coral-red.color-coral-red.fs-5 data-action="click->selector#openModal" data-result=i data-replace="..."
+        - else
+          div.square.empty
+    = render partial: 'shared/modals/selector', locals: { options: @question.options['matrix_answers'] }
+    scss:
+      .square{outline:1px solid #ccc;border:1px solid transparent}.square.empty{outline:1px solid transparent;background:transparent}
+  TEXT
+)
+
+15.times do
+  selected_numbers = generate_connected_cells(10)
+  display_number = selected_numbers.sample
+
+  matrix = (0...10).map { |i| (1 + i * 10..10 + i * 10).to_a }
+  matrix.select! { |row| row.any? { |num| selected_numbers.include?(num) } }
+  columns_to_keep = matrix[0].each_index.select do |col_index|
+    matrix.any? { |row| selected_numbers.include?(row[col_index]) }
+  end
+  filtered_matrix = matrix.map { |row| columns_to_keep.map { |i| row[i] } }
+
+  min = (selected_numbers.min - 10).clamp(0..)
+  max = (selected_numbers.max + 10).clamp(..100)
+  Question.create!(
+    question_template:,
+    options: {
+      selected_numbers:,
+      display_number:,
+      items_per_row: filtered_matrix.first.count,
+      matrix: filtered_matrix.flatten,
+      matrix_answers: (0...10).map{ |i| (1 + i * 10..10 + i * 10).to_a }.transpose.flatten
+    },
+  )
+end
