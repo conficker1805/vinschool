@@ -117,7 +117,7 @@ end
 
     Question.create!(
       question_template:,
-      options: { type: 'lẻ', value: 'lớn nhất', answers: },
+      options: { type: 'chẵn', value: 'lớn nhất', answers: },
     )
 
     break
@@ -136,7 +136,7 @@ end
 
     Question.create!(
       question_template:,
-      options: { type: 'lẻ', value: 'nhỏ nhất', answers: },
+      options: { type: 'chẵn', value: 'nhỏ nhất', answers: },
     )
 
     break
