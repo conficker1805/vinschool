@@ -16,7 +16,7 @@ question_template = QuestionTemplate.create!(
 )
 
 def generate_sequence(step)
-  input_count = 4
+  input_count = 6
 
   loop do
     start = rand(1..95)

@@ -219,7 +219,7 @@ question_template = QuestionTemplate.create!(
   answer_type: :select_answer,
   slim_content: <<~TEXT
     .title Dựa vào bảng số 100, hãy điền số vào ô trống
-    .d-inline-grid style=('grid-template-columns: repeat(' + @question.options['items_per_row'].to_s + ', 50px)')
+    .d-inline-grid.mt-3 style=('grid-template-columns: repeat(' + @question.options['items_per_row'].to_s + ', 50px)')
       - @question.options['matrix'].each do |i|
         - if i == @question.options['display_number']
           .square.bold.background-light-coral-red.fs-5 = @question.options['display_number']
@@ -255,5 +255,50 @@ question_template = QuestionTemplate.create!(
       matrix: filtered_matrix.flatten,
       matrix_answers: (0...10).map{ |i| (1 + i * 10..10 + i * 10).to_a }.transpose.flatten
     },
+  )
+end
+
+# ====== Sơ đồ thành phần - tổng thể =====
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :numbers,
+  answer_type: :select_answer,
+  slim_content: <<~TEXT
+    - img = aws_shared_url('shared/cube_small.png')
+    .title Điền số thích hợp vào sơ đồ thành phần - tổng thể
+    .row
+      .col-md-6
+        .d-flex.gap-3.justify-content-end.align-items-center
+          - @question.options['left'].times do
+            .tens
+              - (1..10).to_a.each do |i|
+                = image_tag(img, class: 'small_cube', style: "z-index: #{10 - i}; top: -#{i * 9}px")
+          .odd.d-grid.gap-2 style="grid-template-columns: repeat(2, 1fr);"
+            - @question.options['right'].times do
+              = image_tag(img, class: 'small_cube')
+      .col-md-6
+        .tree.mt-3 style='justify-self: flex-start'
+          .node-root.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['num']
+          .branches
+            .branch.left
+              .node-child.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['left']
+            .branch.right
+              .node-child.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['right']
+    = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
+    scss:
+      .small_cube{height:30px}.tens{transform:translate(0,20px)}.tens .small_cube{position:relative}.odd{align-self:flex-start;padding-top:10px}
+      .tree{display:flex;flex-direction:column;align-items:center}.tree .node-root,.tree .node-child{width:80px;height:80px;border:2px solid #3c4a60;border-radius:50%;text-align:center;line-height:80px;background:white;position:relative;z-index:1}.tree .branches{display:flex;justify-content:space-between;width:200px;margin-top:30px}.tree .branches .branch{position:relative;width:80px;height:80px}.tree .branches .branch::before{content:"";position:absolute;top:-60px;width:2px;height:100px;background:black;z-index:0}.tree .branches .branch.left::before{left:80%;transform:rotate(35deg)}.tree .branches .branch.right::before{right:80%;transform:rotate(-35deg)}
+  TEXT
+)
+
+15.times do
+  num = rand(10..60)
+  left = num / 10
+  right = num % 10
+  Question.create!(
+    question_template:,
+    options: { num:, left:, right: },
   )
 end
