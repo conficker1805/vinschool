@@ -20,13 +20,9 @@ td, th, tr {
   border-color: #aee0fc;
 }
 
-.fs-0{
-  font-size: 0px;
-}
-
-.fs-14 {
-  font-size: 14px;
-}
+.fs-0 { font-size: 0px; }
+.fs-14 { font-size: 14px; }
+.fs-18 { font-size: 18px; }
 
 .question-section {
   margin-top: 30px;
@@ -92,6 +88,7 @@ td, th, tr {
 //==============================
 
 .title {
+  text-transform: uppercase;
   font-size: 20px;
   font-weight: bold;
   margin: 3px 0 7px;

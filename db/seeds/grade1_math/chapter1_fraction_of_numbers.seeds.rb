@@ -457,3 +457,143 @@ data.each do |arr|
   )
 end
 
+# ===== Tính toán nguyên liệu =====
+question_template = QuestionTemplate.create!(
+  grade: 1,
+  subject: :math,
+  chapter: 1,
+  question_type: :number_fraction_of_recipes,
+  answer_type: :select_answer,
+  slim_content: <<~TEXT
+    .title Tìm số nguyên liệu phù hợp
+    div.bold.mt-4 = @question.options['original_recipe']
+    div = @question.options['original_material_1'].to_s + @question.options['unit'] + ' ' + @question.options['materials'][0]
+    div = @question.options['original_material_2'].to_s + @question.options['unit'] + ' ' + @question.options['materials'][1]
+    div = @question.options['original_material_3'].to_s + @question.options['unit'] + ' ' + @question.options['materials'][2]
+    div = @question.options['original_material_4'].to_s + @question.options['unit'] + ' ' + @question.options['materials'][3]
+    .bold.mt-2 = @question.options['target_recipe']
+    - (0..3).to_a.each do |i|
+      .item
+        span.text-success.bold.fs-18 data-action="click->selector#openModal" data-result=@question.options['results'][i] data-replace='...'
+        span = @question.options['unit'] + ' ' + @question.options['materials'][i]
+    = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
+  TEXT
+)
+
+def data(origin, target)
+  [
+    {
+      original_recipe: "Công thức để pha #{origin} ly nước ép cần:",
+      target_recipe: "Hỏi cần bao nhiêu nguyên liệu để pha #{target} ly nước ép?",
+      materials: ['nước cam', 'nước dứa', 'đường', 'nước cốt chanh'],
+      unit: 'ml'
+    },
+    {
+      original_recipe: "Để pha đủ màu cho #{origin} bức tranh, họa sĩ dùng:",
+      target_recipe: "Hỏi cần bao nhiêu lượng mỗi màu để vẽ #{target} bức tranh?",
+      materials: ['màu đỏ', 'màu vàng', 'màu xanh', 'màu trắng'],
+      unit: 'ml'
+    },
+    {
+      original_recipe: "Để làm #{origin} mô hình con vật bằng đất nặn, cần:",
+      target_recipe: "Hỏi để làm #{target} mô hình, cần bao nhiêu mỗi loại?",
+      materials: ['đất đỏ', 'đất xanh', 'đất trắng', 'keo dính'],
+      unit: 'gam'
+    },
+    {
+      original_recipe: "Một cô thợ may dùng nguyên liệu như sau để làm #{origin} chiếc túi:",
+      target_recipe: "Hỏi cô ấy cần bao nhiêu nguyên liệu để may #{target} chiếc túi?",
+      materials: ['vải chính', 'vải lót', 'dây kéo', 'ruy băng trang trí'],
+      unit: 'cm'
+    },
+    {
+      original_recipe: "Để làm #{origin} chiếc tổ chim, cần:",
+      target_recipe: "Hỏi để làm #{target} chiếc tổ chim, cần bao nhiêu nguyên liệu?",
+      materials: ['que gỗ nhỏ', 'cọng rơm', 'lá khô', 'hạt keo'],
+      unit: ''
+    },
+    {
+      original_recipe: "Một bộ làm #{origin} chiếc ô tô đồ chơi gồm:",
+      target_recipe: "Hỏi cần bao nhiêu chi tiết để lắp #{target} chiếc ô tô?",
+      materials: ['bánh xe', 'khung xe', 'cánh cửa', 'mui xe'],
+      unit: ''
+    },
+    {
+      original_recipe: "Để chuẩn bị #{origin} hộp bút chì màu, nhà máy dùng:",
+      target_recipe: "Hỏi cần bao nhiêu nguyên liệu để chuẩn bị #{target} hộp bút?",
+      materials: ['thân gỗ', 'ruột chì', 'vỏ màu', 'keo dán'],
+      unit: 'cái'
+    },
+    {
+      original_recipe: "Một đầu bếp cần các nguyên liệu sau để nấu #{origin} bát mì:",
+      target_recipe: "Hỏi cần bao nhiêu nguyên liệu để nấu #{target} bát mì?",
+      materials: ['mì sợi', 'nước dùng', 'rau cải', 'thịt bò'],
+      unit: 'gam'
+    },
+    {
+      original_recipe: "Một học sinh dùng những nguyên liệu sau để làm #{origin} chiếc đèn lồng:",
+      target_recipe: "Cần bao nhiêu nguyên liệu để làm #{target} chiếc đèn lồng?",
+      materials: ['giấy màu', 'keo dán', 'thanh tre', 'dây treo'],
+      unit: ''
+    },
+    {
+      original_recipe: "Để trồng #{origin} chậu cây nhỏ, cần:",
+      target_recipe: "Cần bao nhiêu vật liệu để trồng #{target} chậu cây?",
+      materials: ['đất trồng', 'hạt giống', 'nước tưới', 'phân bón'],
+      unit: 'ml'
+    }
+  ]
+end
+
+# Phép chia
+10.times do
+  cal = [ # Dùng target là số nhỏ để các phép toán đơn giản hơn
+    { table: 2, target: (1..5).to_a.sample },
+    { table: 5, target: (1..3).to_a.sample },
+    { table: 10, target: (1..2).to_a.sample },
+  ].sample
+
+  table = cal[:table]
+  target = cal[:target]
+  origin = table * target
+  results = [rand(1..10), rand(1..10), rand(1..10), rand(1..10)]
+
+  base_data = {
+    results:,
+    original_material_1: results[0] * table,
+    original_material_2: results[1] * table,
+    original_material_3: results[2] * table,
+    original_material_4: results[3] * table,
+  }
+
+  Question.create!(
+    question_template:,
+    options: data(origin, target).sample.merge(base_data),
+  )
+end
+
+# Phép nhân
+10.times do
+  cal = [ # Dùng target là số nhỏ để các phép toán đơn giản hơn
+    { table: 1, target: [2, 2, 5, 5, 10].sample },
+    { table: [2, 5, 10].sample, target: 2 },
+  ].sample
+
+  table = cal[:table]
+  target = cal[:target]
+  origin = table
+  results = [rand(1..10) * target, rand(1..10) * target, rand(1..10) * target, rand(1..10) * target]
+
+  base_data = {
+    results:,
+    original_material_1: results[0] / target,
+    original_material_2: results[1] / target,
+    original_material_3: results[2] / target,
+    original_material_4: results[3] / target,
+  }
+
+  Question.create!(
+    question_template:,
+    options: data(origin, target).sample.merge(base_data),
+  )
+end
