@@ -13,7 +13,7 @@ class BlockDiagramNumberGenerator
 
     @result[first_key] = {
       value: first_value,
-      text: "Số #{first_key} xuất hiện #{first_value} lần"
+      text: "Mặt số #{first_key} xuất hiện #{first_value} lần"
     }
 
     keys[1..].each do |key|
