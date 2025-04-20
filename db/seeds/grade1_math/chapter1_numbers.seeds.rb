@@ -295,7 +295,7 @@ question_template = QuestionTemplate.create!(
 
 15.times do
   num = rand(10..60)
-  left = num / 10
+  left = num / 10 * 10
   right = num % 10
   Question.create!(
     question_template:,
