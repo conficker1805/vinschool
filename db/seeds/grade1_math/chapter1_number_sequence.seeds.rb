@@ -43,7 +43,10 @@ end
 
 10.times.each do
   step = [-1, -2, -2, -3, -3, -4, -4, -5, -5, -10].sample
-  start, results = generate_sequence(step)
+  start, results = loop do
+    start, results = generate_sequence(step)
+    break start, results if results.all?(&:positive?)
+  end
 
   Question.create!(
     question_template:,

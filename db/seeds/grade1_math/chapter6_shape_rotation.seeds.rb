@@ -1,5 +1,6 @@
-# ====== Sơ đồ thành phần - tổng thể =====
+puts 'Creating MATH - Chapter 6 - Shape Rotation'
 
+# ====== Phép quay hình =====
 data = [
   { value: 1, img: 'shared/arrow-right.png' },
   { value: 1, img: 'shared/moon.png' },
