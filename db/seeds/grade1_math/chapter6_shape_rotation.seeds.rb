@@ -8,7 +8,7 @@ data = [
   { value: 2, img: 'shared/sign-board-1.png' },
   { value: 2, img: 'shared/arrow-left-right.png' },
   { value: 2, img: 'shared/sign-board-3.png' },
-  { value: 2, img: 'shared/bookmark.png' },
+  { value: 2, img: 'shared/two-opposite-triangles.png' },
   { value: 3, img: 'shared/equilateral-triangle.png' },
   { value: 3, img: 'shared/three-petal.png' },
   { value: 3, img: 'shared/mercedes-benz.png' },
