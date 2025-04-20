@@ -24,6 +24,7 @@ td, th, tr {
 .fs-14 { font-size: 14px; }
 .fs-18 { font-size: 18px; }
 .fs-20 { font-size: 20px; }
+.fs-22 { font-size: 22px; }
 
 .question-section {
   margin-top: 30px;
@@ -145,7 +146,8 @@ span.mfrac {
   cursor: pointer;
   margin-bottom: 10px;
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 50%;
+  text-align: center;
 
   &.highlight:after {
     content: "";
