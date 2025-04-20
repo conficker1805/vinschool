@@ -271,7 +271,7 @@ question_template = QuestionTemplate.create!(
     .row
       .col-md-6
         .d-flex.gap-3.justify-content-end.align-items-center
-          - @question.options['left'].times do
+          - @question.options['tens_size'].times do
             .tens
               - (1..10).to_a.each do |i|
                 = image_tag(img, class: 'small_cube', style: 'z-index: ' + (10 - i).to_s + '; top: -' + (i * 9).to_s + 'px')
