@@ -176,7 +176,7 @@ end
 #       - @question.options['answers'].each_with_index do |a, idx|
 #         .col-md-3
 #           input type="checkbox" id=idx class="circle-btn d-none" data-circle-answers-target="answer" data-correct=a['correct'].to_s
-#           label.circlable.px-1.w-100.bold.text-center for=idx
+#           label.circlable.px-1.w-100.bold for=idx
 #             .card.border-0.shadow-sm.text-center
 #               .card-body.px-2 style="min-height: 165px"
 #                 .card-title.mb-1.text-muted = @question.options['icons'][idx]['name']

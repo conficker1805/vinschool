@@ -12,7 +12,7 @@ question_template = QuestionTemplate.create!(
     .answers.d-flex.gap-3.mt-4
       - @question.options['answers'].each_with_index do |a, idx|
         input type="checkbox" id=idx class="circle-btn d-none" data-circle-answers-target="answer" data-correct=a['correct'].to_s
-        label.circlable.d-inline.fs-5.text-center style="min-width: 45px" for=idx = a['text']
+        label.circlable.d-inline.fs-5 style="min-width: 45px" for=idx = a['text']
   TEXT
 )
 
@@ -63,7 +63,7 @@ question_template = QuestionTemplate.create!(
     .answers.d-flex.gap-3.mt-4
       - @question.options['answers'].each_with_index do |a, idx|
         input type="checkbox" id=idx class="circle-btn d-none" data-circle-answer-target="answer" data-correct=a['correct'].to_s
-        label.circlable.d-inline.fs-5.text-center style="min-width: 45px" for=idx = a['text']
+        label.circlable.d-inline.fs-5 style="min-width: 45px" for=idx = a['text']
   TEXT
 )
 

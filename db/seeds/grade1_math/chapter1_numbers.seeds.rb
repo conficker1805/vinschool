@@ -83,8 +83,9 @@ end
 # Viết số sau dưới dạng chữ
 
 def read_number(n)
-  return "không" if n == 0
-  return "một trăm" if n == 100
+  return 'không' if n == 0
+  return 'mười' if n == 10
+  return 'một trăm' if n == 100
 
   units = %w[không một hai ba bốn năm sáu bảy tám chín]
   tens  = [nil, "mười", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"]
@@ -151,7 +152,7 @@ question_template = QuestionTemplate.create!(
       = fa_icon @question.options['start_from']['font_awesome'], class: 'fs-1'
       - 1.upto(8).each do |idx|
         input type="checkbox" id=idx class="circle-btn d-none" data-circle-answer-target="answer" data-correct=(idx == @question.options['result'] ? 'true' : 'false' )
-        label.circlable.fs-5.text-center.mb-0.d-flex.align-items-center.justify-content-center style="min-width: 45px" for=idx = fa_icon @question.options['item']['font_awesome'], class: 'fs-2 fa-regular'
+        label.circlable.fs-5.mb-0.d-flex.align-items-center.justify-content-center style="min-width: 45px" for=idx = fa_icon @question.options['item']['font_awesome'], class: 'fs-2 fa-regular'
   TEXT
 )
 
