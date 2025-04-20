@@ -280,12 +280,12 @@ question_template = QuestionTemplate.create!(
               = image_tag(img, class: 'small_cube')
       .col-md-6
         .tree.mt-3 style='justify-self: flex-start'
-          .node-root.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['num']
+          .node-root.color-coral-red.background-light-coral-red.bold.fs-20 data-replace='...' data-action="click->selector#openModal" data-result=@question.options['num']
           .branches
             .branch.left
-              .node-child.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['left']
+              .node-child.color-coral-red.background-light-coral-red.bold.fs-20 data-replace='...' data-action="click->selector#openModal" data-result=@question.options['left']
             .branch.right
-              .node-child.color-coral-red.background-light-coral-red.bold data-replace='...' data-action="click->selector#openModal" data-result=@question.options['right']
+              .node-child.color-coral-red.background-light-coral-red.bold.fs-20 data-replace='...' data-action="click->selector#openModal" data-result=@question.options['right']
     = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
     scss:
       .small_cube{height:30px}.tens{transform:translate(0,20px);max-height:250px;}.tens .small_cube{position:relative}.odd{align-self:flex-start;padding-top:10px}
