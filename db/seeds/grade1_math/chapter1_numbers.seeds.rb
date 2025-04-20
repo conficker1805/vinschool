@@ -299,6 +299,6 @@ question_template = QuestionTemplate.create!(
   right = num % 10
   Question.create!(
     question_template:,
-    options: { num:, left:, right: },
+    options: { num:, left:, right:, tens_size: num / 10 },
   )
 end
