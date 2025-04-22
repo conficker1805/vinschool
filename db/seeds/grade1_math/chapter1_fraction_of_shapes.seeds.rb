@@ -18,7 +18,7 @@ question_template = QuestionTemplate.create!(
         .fraction.d-inline-flex.flex-column
           .numerator.text-center.text-success.fs-3.px-1.border-bottom.border-black data-action="click->selector#openModal" data-replace='...' data-result=@question.options['numerator']
           .denominator.text-center.text-success.fs-3.px-1 data-action="click->selector#openModal" data-replace='...' data-result=@question.options['denominator']
-    = render partial: 'shared/modals/selector', locals: { options: (1..10).to_a }
+    = render partial: 'shared/modals/selector', locals: { options: (0..10).to_a }
     scss:
       .rectangle{display:grid;border:3px solid #cc5432;gap:3px;background-color:#cc5432}.rectangle .part{background-color:#fffbf3}.rectangle .part.slash{background-image:repeating-linear-gradient(45deg,#fc6a54,#fc6a54 3px,transparent 0,transparent 9px)}.rectangle .part.dotted{background-image:radial-gradient(#fc6a54 1.5px,transparent 0);background-size:9px 9px}
     javascript:

@@ -147,18 +147,18 @@ question_template = QuestionTemplate.create!(
           = fa_icon 'jet-fighter', class: 'fs-2 position-absolute start'
       .col-md-7
         .statement.display-list-item.mt-3
-          span Máy bay quay một phần tư vòng theo chiều kim đồng hồ 
-          span.text-success.bold data-action="click->selector#openModal" data-result=@question.options['right_turn'] data-replace='....'
-          span  lần
+          span Máy bay quay một phần tư vòng theo chiều kim đồng hồ
+          span.text-success.bold.px-2 data-action="click->selector#openModal" data-result=@question.options['right_turn'] data-replace='....'
+          span lần
         .statement.display-list-item.mt-3
-          span Máy bay quay một phần tư vòng ngược chiều kim đồng hồ 
-          span.text-success.bold data-action="click->selector#openModal" data-result=@question.options['left_turns'] data-replace='....'
-          span  lần
+          span Máy bay quay một phần tư vòng ngược chiều kim đồng hồ
+          span.text-success.bold.px-2 data-action="click->selector#openModal" data-result=@question.options['left_turns'] data-replace='....'
+          span lần
         .statement.display-list-item.mt-3
-          span Máy bay đã rẽ vuông góc tổng cộng 
-          span.text-success.bold data-action="click->selector#openModal" data-result=(@question.options['left_turns'] + @question.options['right_turns']) data-replace='....'
-          span  lần
-    = render partial: 'shared/modals/selector', locals: { options: (1..10).to_a }
+          span Máy bay đã rẽ vuông góc tổng cộng
+          span.text-success.bold.px-2 data-action="click->selector#openModal" data-result=(@question.options['left_turns'] + @question.options['right_turns']) data-replace='....'
+          span lần
+    = render partial: 'shared/modals/selector', locals: { options: (0..10).to_a }
     scss:
       .matrix{padding:0 30px}.start{bottom:5px;left:-10px}.statement{display:list-item}
   TEXT

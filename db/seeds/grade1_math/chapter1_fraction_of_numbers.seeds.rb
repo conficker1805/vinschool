@@ -476,7 +476,7 @@ question_template = QuestionTemplate.create!(
       .item
         span.text-success.bold.fs-18 data-action="click->selector#openModal" data-result=@question.options['results'][i] data-replace='...'
         span = @question.options['unit'] + ' ' + @question.options['materials'][i]
-    = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
+    = render partial: 'shared/modals/selector', locals: { options: (0..100).to_a }
   TEXT
 )
 

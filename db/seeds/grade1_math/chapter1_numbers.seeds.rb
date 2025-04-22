@@ -287,7 +287,7 @@ question_template = QuestionTemplate.create!(
               .node-child.color-coral-red.background-light-coral-red.bold.fs-20 data-replace='...' data-action="click->selector#openModal" data-result=@question.options['left']
             .branch.right
               .node-child.color-coral-red.background-light-coral-red.bold.fs-20 data-replace='...' data-action="click->selector#openModal" data-result=@question.options['right']
-    = render partial: 'shared/modals/selector', locals: { options: (1..100).to_a }
+    = render partial: 'shared/modals/selector', locals: { options: (0..100).to_a }
     scss:
       .small_cube{height:30px}.tens{transform:translate(0,20px);max-height:250px;}.tens .small_cube{position:relative}.odd{align-self:flex-start;padding-top:10px}
       .tree{display:flex;flex-direction:column;align-items:center}.tree .node-root,.tree .node-child{width:80px;height:80px;border:2px solid #3c4a60;border-radius:50%;text-align:center;line-height:80px;background:white;position:relative;z-index:1}.tree .branches{display:flex;justify-content:space-between;width:200px;margin-top:30px}.tree .branches .branch{position:relative;width:80px;height:80px}.tree .branches .branch::before{content:"";position:absolute;top:-60px;width:2px;height:100px;background:black;z-index:0}.tree .branches .branch.left::before{left:80%;transform:rotate(35deg)}.tree .branches .branch.right::before{right:80%;transform:rotate(-35deg)}
