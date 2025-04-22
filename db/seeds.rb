@@ -36,4 +36,5 @@ Rake::Task['db:seed:grade1_math:chapter6_calendar'].invoke
 Rake::Task['db:seed:grade1_math:chapter6_repeating_pattern'].invoke
 Rake::Task['db:seed:grade1_math:chapter6_block_diagram'].invoke
 Rake::Task['db:seed:grade1_math:chapter6_shape_rotation'].invoke
+Rake::Task['db:seed:grade1_math:chapter6_direction'].invoke
 
