@@ -42,7 +42,6 @@ class BlockDiagramNumberGenerator
       Rule.new(:minus_2, 1, ->(x) { x - 2 }, ->(l1) { "xuất hiện ít hơn mặt số #{l1} hai lần" }),
       Rule.new(:same_as, 1, ->(x) { x }, ->(l1) { "xuất hiện bằng với mặt số #{l1}" }),
       Rule.new(:sum_of_two, 2, ->(x, y) { x + y }, ->(l1, l2) { "có số lần xuất hiện bằng tổng của mặt số #{l1} và mặt số #{l2}" }),
-      Rule.new(:x_minus_y_plus_z, 3, ->(x, y, z) { x - y + z }, ->(l1, l2, l3) { "có số lần xuất hiện bằng mặt #{l1} - mặt #{l2} + mặt #{l3}" }),
       Rule.new(:x_plus_y_minus_z, 3, ->(x, y, z) { x + y - z }, ->(l1, l2, l3) { "có số lần xuất hiện bằng mặt #{l1} + mặt #{l2} - mặt #{l3}" })
     ]
   end
