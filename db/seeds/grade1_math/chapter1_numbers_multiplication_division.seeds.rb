@@ -1,6 +1,6 @@
 puts 'Creating MATH - Chapter 1 - Multiplication & Division'
 
-# Thực hiện phép tình cộng hoặc trừ: 33 + 25 = []
+# Thực hiện phép tính cộng hoặc trừ: 33 + 25 = []
 question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,

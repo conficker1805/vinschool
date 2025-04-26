@@ -228,7 +228,7 @@ question_template = QuestionTemplate.create!(
           .square.bold.background-light-coral-red.color-coral-red.fs-5 data-action="click->selector#openModal" data-result=i data-replace="..."
         - else
           div.square.empty
-    = render partial: 'shared/modals/selector', locals: { options: @question.options['matrix_answers'] }
+    = render partial: 'shared/modals/selector', locals: { options: (0..100).to_a }
     scss:
       .square{outline:1px solid #ccc;border:1px solid transparent}.square.empty{outline:1px solid transparent;background:transparent}
   TEXT
@@ -253,8 +253,7 @@ question_template = QuestionTemplate.create!(
       selected_numbers:,
       display_number:,
       items_per_row: filtered_matrix.first.count,
-      matrix: filtered_matrix.flatten,
-      matrix_answers: (0...10).map{ |i| (1 + i * 10..10 + i * 10).to_a }.transpose.flatten
+      matrix: filtered_matrix.flatten
     },
   )
 end
