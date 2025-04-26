@@ -40,8 +40,8 @@ question_template = QuestionTemplate.create!(
   left_num = rand(5..40)
   right_num = rand(5..30)
   common_num = rand(5..30)
-  left_title = ['nhảy', 'múa', 'bơi'].sample
-  right_title = ['hát', 'đàn', 'vẽ'].sample
+  left_title = ['nhảy', 'múa', 'bơi', 'đọc'].sample
+  right_title = ['hát', 'đàn', 'vẽ', 'viết'].sample
   positive = 'biết'
   negative = 'không biết'
 
@@ -50,26 +50,8 @@ question_template = QuestionTemplate.create!(
     options: { left_num:, right_num:, left_title:, right_title:, positive:, negative:, common_num:, results: {
       num1: common_num,
       num2: right_num,
-      num3: left_num,
+      num3: right_num + common_num,
       num4: left_num + right_num + common_num,
     }},
   )
 end
-
-left_num = rand(5..40)
-right_num = rand(5..30)
-common_num = rand(5..30)
-left_title = ['nhảy', 'múa', 'bơi'].sample
-right_title = ['hát', 'đàn', 'vẽ'].sample
-positive = 'biết'
-negative = 'không biết'
-
-Question.create!(
-  question_template:,
-  options: { left_num:, right_num:, left_title:, right_title:, positive:, negative:, common_num:, results: {
-    num1: common_num,
-    num2: right_num,
-    num3: right_num + common_num,
-    num4: left_num + right_num + common_num,
-  }},
-)
