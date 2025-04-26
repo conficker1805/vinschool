@@ -213,7 +213,7 @@ question_template = QuestionTemplate.create!(
   question_type: :calendar,
   answer_type: :select_answer,
   slim_content: <<~TEXT
-    .title.mb-2 = 'Ngày ' + @question.options['day_name'] + ' thứ ' + @question.options['ordering'].to_s + ' là ngày nào?'
+    .title.mb-3 Điền ngày tháng phù hợp vào chỗ trống
     .calendar.border-coral-red.background-light-coral-red.mb-3
       .header.bold.color-coral-red = 'Tháng ' + @question.options['month'] + ', ' + @question.options['year']
       .weekdays
@@ -222,6 +222,7 @@ question_template = QuestionTemplate.create!(
       .days
         - @question.options['calendar_days'].each do |day|
           span = day
+    .fs-18.bold.mb-2 = 'Ngày ' + @question.options['day_name'] + ' thứ ' + @question.options['ordering'].to_s + ' là:'
     span.text-success.bold data-action="click->selector#openModal" data-modal-name="dayOfWeek" data-replace="........" data-result=@question.options['day_name']
     span.text-success.bold = ', ngày '
     span.text-success.bold data-action="click->selector#openModal" data-modal-name="day" data-replace="...." data-result=@question.options['results']['date']
