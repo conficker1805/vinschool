@@ -148,7 +148,7 @@ question_template = QuestionTemplate.create!(
       .col-md-7
         .statement.display-list-item.mt-3
           span Máy bay quay một phần tư vòng theo chiều kim đồng hồ
-          span.text-success.bold.px-2 data-action="click->selector#openModal" data-result=@question.options['right_turn'] data-replace='....'
+          span.text-success.bold.px-2 data-action="click->selector#openModal" data-result=@question.options['right_turns'] data-replace='....'
           span lần
         .statement.display-list-item.mt-3
           span Máy bay quay một phần tư vòng ngược chiều kim đồng hồ
