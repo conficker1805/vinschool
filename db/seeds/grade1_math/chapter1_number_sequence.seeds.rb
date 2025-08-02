@@ -21,7 +21,7 @@ def generate_sequence(step)
   loop do
     start = rand(5..95)
     results = (0..input_count - 1).to_a.map { |i| start + (i * step) }
-    break results if start + (step * input_count) <= 100
+    break results if results.min >= 0 || results.max <= 100
   end
 end
 
