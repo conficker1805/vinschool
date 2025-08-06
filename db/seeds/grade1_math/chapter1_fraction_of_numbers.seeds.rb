@@ -113,9 +113,9 @@ Question.create!(
   question_template:,
   options: { fraction: Katex.render('\\frac{1}{2}'), quantity: 18 },
   answers_attributes: [
-    { text: '4', correct: true },
+    { text: '4', correct: false },
     { text: '8', correct: false },
-    { text: '9', correct: false },
+    { text: '9', correct: true },
     { text: '14', correct: false },
   ],
 )
