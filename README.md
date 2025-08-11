@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# HOW TO DEPLOY
+### Push code to Github
+### SSH to server
+  ssh vinschool
+  cd vinschool
+### Add code to container
+  build
+### Run seed
+  seed
+  dc run web rails db:seed:grade1_math:chapter6_shape_rotation
