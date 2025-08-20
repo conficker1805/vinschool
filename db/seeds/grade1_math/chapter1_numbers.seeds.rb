@@ -294,11 +294,11 @@ question_template = QuestionTemplate.create!(
 )
 
 15.times do
-  num = rand(10..60)
-  left = num / 10 * 10
+  num = rand(10..100)
+  left = num / 10
   right = num % 10
   Question.create!(
     question_template:,
-    options: { num:, left:, right:, tens_size: num / 10 },
+    options: { num:, left:, right:, tens_size: left },
   )
 end

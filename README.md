@@ -33,3 +33,20 @@ Things you may want to cover:
 ### Run seed
   seed
   dc run web rails db:seed:grade1_math:chapter6_shape_rotation
+### Access Rails log
+  dc logs -f web
+### Access Rails console
+  dc run web rails console
+### Access Bash
+  dc run web bash
+
+### Reset docker
+docker-compose down --volumes
+docker-compose build --no-cache
+docker-compose up -d
+
+### Check/Remove container
+docker ps -a
+docker rm f99e41eba9a6
+
+docker-compose restart web

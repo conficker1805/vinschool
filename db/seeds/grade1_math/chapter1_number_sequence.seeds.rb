@@ -21,7 +21,7 @@ def generate_sequence(step)
   loop do
     start = rand(5..95)
     results = (0..input_count - 1).to_a.map { |i| start + (i * step) }
-    break results if results.min >= 0 || results.max <= 100
+    break results if results.min >= 0 && results.max <= 100
   end
 end
 
@@ -129,7 +129,6 @@ end
 end
 
 # === Cho dãy số, điền vào chỗ trống (step 3 và 5)
-
 question_template = QuestionTemplate.create!(
   grade: 1,
   subject: :math,
